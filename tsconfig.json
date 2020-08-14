@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "strict": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "sourceMap": false,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+  },
+  "include": [
+    "src/index.ts",
+    "global.d.ts"
+  ],
+}
