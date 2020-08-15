@@ -12,6 +12,7 @@
     "react-native": ">=0.60.0"
   },
   "devDependencies": {
+    "@types/react": "^16.9.46",
     "prettier": "^2.0.5",
     "typescript": "^3.9.7"
   },
