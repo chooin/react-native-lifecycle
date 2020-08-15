@@ -17,7 +17,8 @@ const useEffectUpdate = (effect, deps) => {
 const useEffectShow = (effect, deps) => {
     const navigation = useNavigation();
     useEffect(() => {
-        navigation.addListener('focus', effect);
+        const unsubscribe = navigation.addListener('focus', effect);
+        return unsubscribe;
     }, [navigation, ...(deps !== null && deps !== void 0 ? deps : [])]);
 };
 export { useEffectOnce, useEffectUpdate, useEffectShow };

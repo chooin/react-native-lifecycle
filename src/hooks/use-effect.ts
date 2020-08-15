@@ -21,7 +21,9 @@ const useEffectShow = (effect: EffectCallback, deps?: DependencyList) => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    navigation.addListener('focus', effect);
+    const unsubscribe = navigation.addListener('focus', effect);
+
+    return unsubscribe;
   }, [navigation, ...(deps ?? [])]);
 };
 
