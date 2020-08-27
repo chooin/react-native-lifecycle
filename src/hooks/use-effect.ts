@@ -5,7 +5,10 @@ const useEffectOnce = (effect: EffectCallback) => {
   useEffect(effect, []);
 };
 
-const useEffectUpdate = (effect: EffectCallback, deps?: DependencyList) => {
+const useEffectUpdate = (
+  effect: EffectCallback,
+  deps?: DependencyList,
+): void => {
   const isLoaded = useRef(false);
 
   useEffect(() => {
@@ -17,7 +20,7 @@ const useEffectUpdate = (effect: EffectCallback, deps?: DependencyList) => {
   }, [...(deps ?? [])]);
 };
 
-const useEffectShow = (effect: EffectCallback, deps?: DependencyList) => {
+const useEffectShow = (effect: EffectCallback, deps?: DependencyList): void => {
   const navigation = useNavigation();
 
   useEffect(() => {
