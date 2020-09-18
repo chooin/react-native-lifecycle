@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 /**
  * 页面从前台变为后台时执行
  */
-const onHide = (effect) => {
+export default (effect) => {
     const navigation = useNavigation();
     // ? App 页面被隐藏触发事件
     useEffect(() => {
