@@ -1,6 +1,6 @@
 {
   "name": "react-native-composition",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Hooks for React Native",
   "main": "dist/index.js",
   "repository": "git@github.com:Chooin/react-native-composition.git",
@@ -12,10 +12,10 @@
     "react-native": ">=0.60.0"
   },
   "devDependencies": {
-    "@types/react": "^16.9.46",
-    "@types/react-native": "^0.63.10",
-    "prettier": "^2.0.5",
-    "typescript": "^3.9.7"
+    "@types/react": "^16.9.49",
+    "@types/react-native": "^0.63.18",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.2"
   },
   "scripts": {
     "build": "prettier --write 'src/**/*.ts' && tsc"
