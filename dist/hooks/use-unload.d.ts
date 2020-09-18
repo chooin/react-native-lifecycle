@@ -1,5 +1,4 @@
-import { EffectCallback } from 'react';
-declare const _default: (effect: EffectCallback) => void;
+declare const _default: (effect: any) => void;
 /**
  * 页面销毁时执行
  */

@@ -1,5 +1,6 @@
-export * as useLoad from './hooks/use-load';
-export * as useShow from './hooks/use-show';
-export * as useHide from './hooks/use-hide';
-export * as useUnload from './hooks/use-unload';
-export * as useResize from './hooks/use-resize';
+import useLoad from './hooks/use-load';
+import useShow from './hooks/use-show';
+import useHide from './hooks/use-hide';
+import useUnload from './hooks/use-unload';
+import useResize from './hooks/use-resize';
+export { useLoad, useShow, useHide, useUnload, useResize };
