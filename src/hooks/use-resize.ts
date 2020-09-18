@@ -1,5 +1,5 @@
 import { useEffect, EffectCallback } from 'react';
-import { Dimensions, ScaledSize } from 'react-native';
+import { Dimensions } from 'react-native';
 
 /**
  * 页面尺寸变化时执行
