@@ -1,9 +1,10 @@
 # React Native Composition API
 
 > 类似微信小程序的生命周期
+
 > 依赖 @react-navigation
 
-### API
+### 生命周期 Lifecycle
 
 - useLoad
 - useShow
