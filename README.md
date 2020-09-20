@@ -1,6 +1,7 @@
 # React Native Lifecycle
 
 > 类似微信小程序的生命周期
+> 依赖 @react-navigation
 
 ### API
 
@@ -19,19 +20,20 @@ import {
   useResize,
 } from 'react-native-composition';
 
-// ? 页面创建时执行
-useLoad(() => {})
+export default function App() {
+  // ? 页面创建时执行
+  useLoad(() => {})
 
-// ? 页面出现在前台时执行
-useShow(() => {})
+  // ? 页面出现在前台时执行
+  useShow(() => {})
 
-// ? 页面从前台变为后台时执行
-useHide(() => {})
+  // ? 页面从前台变为后台时执行
+  useHide(() => {})
 
-// ? 页面销毁时执行
-useUnload(() => {})
+  // ? 页面销毁时执行
+  useUnload(() => {})
 
-// ? 页面尺寸变化时执行
-useResize(() => {})
+  // ? 页面尺寸变化时执行
+  useResize(() => {})
+}
 ```
-
