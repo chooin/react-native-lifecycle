@@ -5,7 +5,13 @@
 
 > 依赖 @react-navigation
 
-### 生命周期 Lifecycle
+### 如何安装
+
+``` sh
+yarn add react-native-composition
+```
+
+### 如何使用
 
 - useLoad
 - useShow
