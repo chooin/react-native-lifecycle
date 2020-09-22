@@ -13,12 +13,6 @@ yarn add react-native-composition
 
 ### 如何使用
 
-- useLoad
-- useShow
-- useHide
-- useUnload
-- useResize
-
 ``` js
 import {
   useLoad,
