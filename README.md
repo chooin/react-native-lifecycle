@@ -28,10 +28,10 @@ export default function App() {
   // ? 页面创建时执行
   useLoad(() => {})
 
-  // ? 页面出现在前台时执行
+  // ? 页面或 APP 出现在前台时执行
   useShow(() => {})
 
-  // ? 页面从前台变为后台时执行
+  // ? 页面或 App 从前台变为后台时执行
   useHide(() => {})
 
   // ? 页面销毁时执行
@@ -40,10 +40,10 @@ export default function App() {
   // ? 页面尺寸变化时执行
   useResize(() => {})
 
-  // ? App 从后台变成前台运行
+  // ? App 从后台变为前台运行
   useActive(() => {})
 
-  // ? App 从前台变后台运行
+  // ? App 从前台变为后台运行
   useInactive(() => {})
 }
 ```

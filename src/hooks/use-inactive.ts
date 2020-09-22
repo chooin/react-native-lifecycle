@@ -2,7 +2,7 @@ import { EffectCallback, useEffect } from 'react';
 import { AppState, AppStateStatus } from 'react-native';
 
 /**
- * App 从前台变后台运行
+ * App 从前台变为后台运行
  */
 export default (effect: EffectCallback): void => {
   // ? App 从前台切换到后台触发事件
