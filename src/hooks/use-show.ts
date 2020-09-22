@@ -8,14 +8,14 @@ import { useNavigation } from '@react-navigation/native';
 export default (effect: EffectCallback): void => {
   const navigation = useNavigation();
 
-  // ? App 页面被展示触发事件
+  // ? 页面出现在前台时执行
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', effect);
 
     return unsubscribe;
   }, [navigation]);
 
-  // ? App 从后台切换至前台触发事件
+  // ? APP 出现在前台时执行
   const onChange = (state: AppStateStatus) => {
     if (state === 'active') {
       effect();

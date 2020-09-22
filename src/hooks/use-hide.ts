@@ -8,14 +8,14 @@ import { useNavigation } from '@react-navigation/native';
 export default (effect: EffectCallback): void => {
   const navigation = useNavigation();
 
-  // ? App 页面被隐藏触发事件
+  // ? 页面从前台变为后台时执行
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', effect);
 
     return unsubscribe;
   }, [navigation]);
 
-  // ? App 从前台切换到后台触发事件
+  // ? App 从前台变为后台时执行
   const onChange = (state: AppStateStatus) => {
     if (state !== 'active') {
       effect();
