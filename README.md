@@ -43,5 +43,11 @@ export default function App() {
 
   // ? 页面尺寸变化时执行
   useResize(() => {})
+
+  // ? App 从后台变成前台运行
+  useActive(() => {})
+
+  // ? App 从前台变后台运行
+  useInactive(() => {})
 }
 ```

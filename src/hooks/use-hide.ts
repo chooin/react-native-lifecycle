@@ -1,5 +1,5 @@
 import { EffectCallback, useEffect } from 'react';
-import { AppState, AppStateStatus, Platform } from 'react-native';
+import { AppState, AppStateStatus } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 /**
@@ -16,14 +16,8 @@ export default (effect: EffectCallback): void => {
   }, [navigation]);
 
   // ? App 从前台切换到后台触发事件
-  const onChange = (newState: AppStateStatus) => {
-    if (
-      newState ===
-      Platform.select({
-        ios: 'inactive',
-        android: 'background',
-      })
-    ) {
+  const onChange = (state: AppStateStatus) => {
+    if (state !== 'active') {
       effect();
     }
   };
