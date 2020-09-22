@@ -20,6 +20,8 @@ import {
   useHide,
   useUnload,
   useResize,
+  useActive,
+  useInactive
 } from 'react-native-composition';
 
 export default function App() {
