@@ -42,10 +42,10 @@ export default function App() {
   // ? 页面尺寸变化时执行
   useResize(() => {})
 
-  // ? 当前页面从后台变为前台时执行
+  // ? 当前页面从 App 后台变为前台时执行
   useActive(() => {})
 
-  // ? 当前页面从前台变为后台时执行
+  // ? 当前页面从 App 前台变为后台时执行
   useInactive(() => {})
 
   // ? App 从后台变为前台时执行
