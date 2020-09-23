@@ -21,7 +21,9 @@ import {
   useUnload,
   useResize,
   useActive,
-  useInactive
+  useInactive,
+  useAppActive,
+  useAppInactive,
 } from 'react-native-composition';
 
 export default function App() {
@@ -40,10 +42,16 @@ export default function App() {
   // ? 页面尺寸变化时执行
   useResize(() => {})
 
-  // ? App 从后台变为前台时执行
+  // ? App 从后台变为前台时执行（当前页面在前台才会生效）
   useActive(() => {})
 
-  // ? App 从前台变为后台时执行
+  // ? App 从前台变为后台时执行（当前页面在前台才会生效）
   useInactive(() => {})
+
+  // ? App 从后台变为前台时执行
+  useAppActive(() => {})
+
+  // ? App 从前台变为后台时执行
+  useAppInactive(() => {})
 }
 ```

@@ -3,7 +3,7 @@ import { AppState, AppStateStatus } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 /**
- * App 从前台变为后台时执行
+ * App 从前台变为后台时执行（当前页面在前台才会生效）
  */
 export default (effect: EffectCallback): void => {
   const navigation = useNavigation();
