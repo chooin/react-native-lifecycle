@@ -1,6 +1,6 @@
 {
   "name": "react-native-composition",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Hooks for React Native",
   "main": "dist/index.js",
   "repository": "git@github.com:Chooin/react-native-composition.git",
