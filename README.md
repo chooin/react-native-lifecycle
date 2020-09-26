@@ -9,13 +9,16 @@
 yarn add react-native-composition
 ```
 
-### 第三方依赖
+##### 第三方依赖
 
 ``` sh
 yarn add @react-navigation/native # >=5.6.0
 ```
 
-### App 生命周期 Hooks
+
+### 如何使用
+
+##### App 生命周期 Hooks
 
 ``` js
 import {
@@ -32,7 +35,7 @@ export default function App() {
 }
 ```
 
-### 页面生命周期 Hooks
+##### Page 生命周期 Hooks
 
 ``` js
 import {
