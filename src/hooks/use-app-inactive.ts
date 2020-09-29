@@ -1,12 +1,18 @@
 import { EffectCallback, useEffect } from 'react';
-import { AppState, AppStateStatus } from 'react-native';
+import { AppState, AppStateStatus, Platform } from 'react-native';
 
 /**
  * App 从前台变为后台时执行
  */
 export default (effect: EffectCallback): void => {
   const onChange = (state: AppStateStatus) => {
-    if (state !== 'active') {
+    if (
+      state ===
+      Platform.select({
+        ios: 'inactive',
+        android: 'background',
+      })
+    ) {
       effect();
     }
   };
