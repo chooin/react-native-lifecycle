@@ -12,7 +12,7 @@ yarn add react-native-composition
 ##### 第三方依赖
 
 ``` sh
-yarn add @react-navigation/native # >=5.6.0
+yarn add @react-navigation/native # >=5.7.0
 ```
 
 
