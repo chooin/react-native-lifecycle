@@ -3,24 +3,24 @@
 [![Latest Version on NPM](https://img.shields.io/npm/v/react-native-lifecycle.svg?style=flat-square)](https://npmjs.com/package/react-native-lifecycle)
 [![npm](https://img.shields.io/npm/dt/react-native-lifecycle.svg?style=flat-square)](https://www.npmjs.com/package/react-native-lifecycle)
 
-[简体中文](./README-zh_CN.md)
+[English](./README.md)
 
-### Install
+### 如何安装
 
 ``` sh
 yarn add react-native-lifecycle
 ```
 
-##### Dependencies
+##### 第三方依赖
 
 ``` sh
 yarn add @react-navigation/native # >=5.7.0
 ```
 
 
-### Usage
+### 如何使用
 
-##### Global Hooks
+##### 全局 Hooks
 
 ``` js
 import {
@@ -29,15 +29,15 @@ import {
 } from 'react-native-lifecycle';
 
 export default function App() {
-  // Called when the application from background to foreground
+  // App 从后台变为前台时执行
   useAppActive(() => {})
 
-  // Called when the application from foreground to background
+  // App 从前台变为后台时执行
   useAppInactive(() => {})
 }
 ```
 
-##### Page/Screen Hooks
+##### 页面 Hooks
 
 ``` js
 import {
@@ -49,19 +49,19 @@ import {
 } from 'react-native-lifecycle';
 
 export default function Page() {
-  // Called when the page load
+  // 页面创建时执行
   useLoad(() => {})
 
-  // Called when the page is displayed or in the application from background to foreground
+  // 页面出现在前台时执行
   useShow(() => {})
 
-  // Called when the page is hidden or in the application from foreground to background
+  // 页面从前台变为后台时执行
   useHide(() => {})
 
-  // Called right before a page instance is destroyed
+  // 页面销毁时执行
   useUnload(() => {})
 
-  // Called after a page window resize
+  // 页面尺寸变化时执行
   useResize(() => {})
 }
 ```
