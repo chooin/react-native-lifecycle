@@ -7,7 +7,7 @@
   "author": "Devin.Zhu",
   "license": "MIT",
   "peerDependencies": {
-    "@react-navigation/native": ">=5.6.0",
+    "@react-navigation/native": ">=5.7.0",
     "react": ">=0.16.8",
     "react-native": ">=0.60.0"
   },
