@@ -58,7 +58,7 @@ export default function Page() {
   // Called when the page is hidden or in the application from foreground to background
   useHide(() => {})
 
-  // Called right before a page instance is destroyed
+  // Called when the page is unloaded
   useUnload(() => {})
 
   // Called after the page window resize
