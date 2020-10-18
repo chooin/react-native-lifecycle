@@ -61,7 +61,7 @@ export default function Page() {
   // Called right before a page instance is destroyed
   useUnload(() => {})
 
-  // Called after a page window resize
+  // Called after the page window resize
   useResize(() => {})
 }
 ```
