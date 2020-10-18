@@ -1,12 +1,12 @@
-# React Native Composition API
+# React Native Lifecycle
 
-[![Latest Version on NPM](https://img.shields.io/npm/v/react-native-composition.svg?style=flat-square)](https://npmjs.com/package/react-native-composition)
-[![npm](https://img.shields.io/npm/dt/react-native-composition.svg?style=flat-square)](https://www.npmjs.com/package/react-native-composition)
+[![Latest Version on NPM](https://img.shields.io/npm/v/react-native-lifecycle.svg?style=flat-square)](https://npmjs.com/package/react-native-lifecycle)
+[![npm](https://img.shields.io/npm/dt/react-native-lifecycle.svg?style=flat-square)](https://www.npmjs.com/package/react-native-lifecycle)
 
 ### 如何安装
 
 ``` sh
-yarn add react-native-composition
+yarn add react-native-lifecycle
 ```
 
 ##### 第三方依赖
@@ -24,7 +24,7 @@ yarn add @react-navigation/native # >=5.7.0
 import {
   useAppActive,
   useAppInactive,
-} from 'react-native-composition';
+} from 'react-native-lifecycle';
 
 export default function App() {
   // App 从后台变为前台时执行
@@ -44,7 +44,7 @@ import {
   useHide,
   useUnload,
   useResize,
-} from 'react-native-composition';
+} from 'react-native-lifecycle';
 
 export default function Page() {
   // 页面创建时执行
