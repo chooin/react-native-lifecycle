@@ -3,7 +3,7 @@
 [![Latest Version on NPM](https://img.shields.io/npm/v/react-native-lifecycle.svg?style=flat-square)](https://npmjs.com/package/react-native-lifecycle)
 [![npm](https://img.shields.io/npm/dt/react-native-lifecycle.svg?style=flat-square)](https://www.npmjs.com/package/react-native-lifecycle)
 
-[简体中文](./README-zh_CN.md)
+[简体中文](./README.zh-CN.md)
 
 ### Install
 
