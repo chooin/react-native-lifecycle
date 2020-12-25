@@ -40,6 +40,7 @@ import {
   useLoad,
   useShow,
   useHide,
+  useBeforeUnload,
   useUnload,
   useResize,
 } from 'react-native-lifecycle';
