@@ -7,39 +7,35 @@
 
 ### Install
 
-``` sh
+```sh
 yarn add react-native-lifecycle
 ```
 
 ##### Dependencies
 
-``` sh
+```sh
 yarn add @react-navigation/native # >=5.7.0
 ```
-
 
 ### Usage
 
 ##### Global Hooks
 
-``` js
-import {
-  useAppActive,
-  useAppInactive,
-} from 'react-native-lifecycle';
+```js
+import { useAppActive, useAppInactive } from 'react-native-lifecycle';
 
 export default function App() {
   // Called when the application from background to foreground
-  useAppActive(() => {})
+  useAppActive(() => {});
 
   // Called when the application from foreground to background
-  useAppInactive(() => {})
+  useAppInactive(() => {});
 }
 ```
 
 ##### Page/Screen Hooks
 
-``` js
+```js
 import {
   useLoad,
   useShow,
@@ -50,18 +46,21 @@ import {
 
 export default function Page() {
   // Called when the page load
-  useLoad(() => {})
+  useLoad(() => {});
 
   // Called when the page is displayed or in the application from background to foreground
-  useShow(() => {})
+  useShow(() => {});
 
   // Called when the page is hidden or in the application from foreground to background
-  useHide(() => {})
+  useHide(() => {});
+
+  // Called before the page unloaded
+  useBeforeUnload(() => {});
 
   // Called when the page is unloaded
-  useUnload(() => {})
+  useUnload(() => {});
 
   // Called after the page window resize
-  useResize(() => {})
+  useResize(() => {});
 }
 ```
