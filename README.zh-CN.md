@@ -55,9 +55,6 @@ export default function Page() {
   // 页面从前台变为后台时执行
   useHide(() => {});
 
-  // 页面销毁前执行
-  useBeforeUnload(() => {});
-
   // 页面销毁时执行
   useUnload(() => {});
 

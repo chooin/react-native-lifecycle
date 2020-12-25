@@ -1,7 +1,6 @@
 import useLoad from './hooks/use-load';
 import useShow from './hooks/use-show';
 import useHide from './hooks/use-hide';
-import useBeforeUnload from './hooks/use-before-unload';
 import useUnload from './hooks/use-unload';
 import useResize from './hooks/use-resize';
 import useAppActive from './hooks/use-app-active';
@@ -13,7 +12,6 @@ export {
   useLoad,
   useShow,
   useHide,
-  useBeforeUnload,
   useUnload,
   useResize,
 };
