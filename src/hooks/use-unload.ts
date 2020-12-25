@@ -5,6 +5,8 @@ import { EffectCallback, useEffect } from 'react';
  */
 export default (effect: EffectCallback): void => {
   useEffect(() => {
-    return effect();
+    return () => {
+      effect();
+    };
   }, []);
 };
