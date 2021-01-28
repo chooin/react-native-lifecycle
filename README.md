@@ -11,7 +11,7 @@
 yarn add react-native-lifecycle
 ```
 
-##### Dependencies
+##### Peer Dependencies
 
 ```sh
 yarn add @react-navigation/native # >=5.7.0
