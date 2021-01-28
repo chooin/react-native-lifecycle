@@ -11,12 +11,6 @@
 yarn add react-native-lifecycle
 ```
 
-##### Peer 依赖
-
-```sh
-yarn add @react-navigation/native # >=5.7.0
-```
-
 ### 如何使用
 
 ##### 全局 Hooks
