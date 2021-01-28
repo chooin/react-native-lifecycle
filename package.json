@@ -7,11 +7,11 @@
   "author": "Devin.Zhu",
   "license": "MIT",
   "peerDependencies": {
-    "@react-navigation/native": ">=5.7.0",
-    "react": ">=0.16.8",
-    "react-native": ">=0.60.0"
+    "@react-navigation/native": ">=5.7.0"
   },
   "devDependencies": {
+    "react": ">=0.16.8",
+    "react-native": ">=0.60.0",
     "@types/react": "^16.9.49",
     "@types/react-native": "^0.63.18",
     "husky": "^4.3.0",
