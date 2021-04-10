@@ -8,8 +8,7 @@
     "sourceMap": false,
     "declaration": true,
     "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
-  "include": [
-    "src/index.ts",
-  ],
+  "include": ["src/index.ts"]
 }
