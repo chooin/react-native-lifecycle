@@ -19,6 +19,8 @@ yarn add @react-navigation/native # >= 5.7.0
 
 ### 如何使用
 
+[例子](https://github.com/Chooin/react-native-example)
+
 ##### 全局 Hooks
 
 ```js
