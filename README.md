@@ -19,7 +19,7 @@ yarn add @react-navigation/native # >= 5.7.0
 
 ### Usage
 
-[Example](https://github.com/Chooin/react-native-example)
+[Example](https://github.com/Chooin/react-native-lifecycle-example)
 
 ##### Global Hooks
 
