@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 /**
  * 页面出现在前台时执行
+ * @public
  */
 export default (effect: EffectCallback): void => {
   const navigation = useNavigation();

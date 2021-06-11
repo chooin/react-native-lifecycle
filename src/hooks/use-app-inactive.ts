@@ -3,6 +3,7 @@ import { AppState, AppStateStatus, Platform } from 'react-native';
 
 /**
  * App 从前台变为后台时执行
+ * @public
  */
 export default (effect: EffectCallback): void => {
   const onChange = (state: AppStateStatus) => {
