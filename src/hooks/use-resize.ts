@@ -1,13 +1,13 @@
-import { useEffect, EffectCallback } from 'react';
+import { useEffect } from 'react';
 import { Dimensions } from 'react-native';
 
 /**
  * 页面尺寸变化时执行
  * @public
  */
-export default (effect: EffectCallback) => {
+export default (fn: () => void) => {
   const onChange = () => {
-    effect();
+    fn();
   };
 
   useEffect(() => {

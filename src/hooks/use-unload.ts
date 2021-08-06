@@ -1,13 +1,13 @@
-import { EffectCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
 /**
  * 页面销毁时执行
  * @public
  */
-export default (effect: EffectCallback): void => {
+export default (fn: () => void): void => {
   useEffect(() => {
     return () => {
-      effect();
+      fn();
     };
   }, []);
 };

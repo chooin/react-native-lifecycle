@@ -1,4 +1,4 @@
-import { EffectCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { AppState, AppStateStatus } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -6,13 +6,13 @@ import { useNavigation } from '@react-navigation/native';
  * 页面出现在前台时执行
  * @public
  */
-export default (effect: EffectCallback): void => {
+export default (fn: () => void): void => {
   const navigation = useNavigation();
 
   // ? App 从前台变为后台时执行
   const onChange = (state: AppStateStatus) => {
     if (state === 'active') {
-      effect();
+      fn();
     }
   };
 
@@ -34,7 +34,7 @@ export default (effect: EffectCallback): void => {
 
   // ? 页面出现在前台时执行
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', effect);
+    const unsubscribe = navigation.addListener('focus', fn);
 
     return unsubscribe;
   }, [navigation]);

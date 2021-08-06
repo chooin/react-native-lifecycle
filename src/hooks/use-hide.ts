@@ -1,4 +1,4 @@
-import { EffectCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { AppState, AppStateStatus, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
  * 页面从前台变为后台时执行
  * @public
  */
-export default (effect: EffectCallback): void => {
+export default (fn: () => void): void => {
   const navigation = useNavigation();
 
   // ? App 从前台变为后台时执行
@@ -18,7 +18,7 @@ export default (effect: EffectCallback): void => {
         android: 'background',
       })
     ) {
-      effect();
+      fn();
     }
   };
 
@@ -40,7 +40,7 @@ export default (effect: EffectCallback): void => {
 
   // ? 页面从前台变为后台时执行
   useEffect(() => {
-    const unsubscribe = navigation.addListener('blur', effect);
+    const unsubscribe = navigation.addListener('blur', fn);
 
     return unsubscribe;
   }, [navigation]);
