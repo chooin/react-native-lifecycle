@@ -24,11 +24,6 @@
     "dist",
     "src"
   ],
-  "lint-staged": {
-    "**/*.{js,ts}": [
-      "git add"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
