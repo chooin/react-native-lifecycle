@@ -14,7 +14,7 @@ yarn add react-native-lifecycle
 ### 第三方依赖
 
 ```sh
-yarn add @react-navigation/native # >= 5.7.0
+yarn add @react-navigation/native # >= 5.7.0 或 >= 6.0.0
 ```
 
 ### 如何使用
