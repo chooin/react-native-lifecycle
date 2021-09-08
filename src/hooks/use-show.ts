@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { AppState, AppStateStatus } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { AppState, AppStateStatus, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 /**
@@ -8,11 +8,23 @@ import { useNavigation } from '@react-navigation/native';
  */
 export default (fn: () => void): void => {
   const navigation = useNavigation();
+  const isAppStateChangeRef = useRef(false);
 
-  // ? App 从前台变为后台时执行
+  // ? App 从后台变为前台时执行
   const onChange = (state: AppStateStatus) => {
-    if (state === 'active') {
-      fn();
+    if (isAppStateChangeRef.current) {
+      if (state === 'active') {
+        fn();
+      }
+    }
+    if (
+      state ===
+      Platform.select({
+        ios: 'inactive',
+        android: 'background',
+      })
+    ) {
+      isAppStateChangeRef.current = true;
     }
   };
 
@@ -34,7 +46,13 @@ export default (fn: () => void): void => {
 
   // ? 页面出现在前台时执行
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', fn);
+    const unsubscribe = navigation.addListener('focus', () => {
+      if (isAppStateChangeRef.current) {
+        isAppStateChangeRef.current = false;
+      } else {
+        fn();
+      }
+    });
 
     return unsubscribe;
   }, [navigation]);
