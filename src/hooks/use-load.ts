@@ -4,7 +4,7 @@ import { useEffect } from 'react';
  * 页面创建时执行
  * @public
  */
-export default (fn: () => void) => {
+export default (fn: () => void): void => {
   useEffect(() => {
     fn();
   }, []);
