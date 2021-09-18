@@ -17,7 +17,7 @@ yarn add react-native-lifecycle
 yarn add @react-navigation/native # >= 5.7.0 or >= 6.0.0
 ```
 
-## Support
+### Support
 
 | package name           | version | react-native version |
 | ---------------------- | ------- | -------------------- |
