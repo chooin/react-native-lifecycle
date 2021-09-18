@@ -19,8 +19,8 @@ export default (fn: () => void): void => {
   };
 
   useEffect(() => {
-    AppState.addEventListener('change', onChange);
+    const unsubscribe = AppState.addEventListener('change', onChange);
 
-    return () => AppState.removeEventListener('change', onChange);
+    return () => unsubscribe.remove();
   }, []);
 };

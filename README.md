@@ -14,8 +14,15 @@ yarn add react-native-lifecycle
 ### Peer Dependencies
 
 ```sh
-yarn add @react-navigation/native # >= 5.7.0 OR >= 6.0.0
+yarn add @react-navigation/native # >= 5.7.0 or >= 6.0.0
 ```
+
+## Support
+
+| package name           | version | react-native version |
+| ---------------------- | ------- | -------------------- |
+| react-native-lifecycle | 2.0.0+  | 0.65.0+              |
+| react-native-lifecycle | 1.0.0+  | 0.59.0+              |
 
 ### Usage
 

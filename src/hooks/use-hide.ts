@@ -1,5 +1,10 @@
-import { useEffect } from 'react';
-import { AppState, AppStateStatus, Platform } from 'react-native';
+import { useEffect, useRef } from 'react';
+import {
+  AppState,
+  AppStateStatus,
+  EmitterSubscription,
+  Platform,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 /**
@@ -8,6 +13,7 @@ import { useNavigation } from '@react-navigation/native';
  */
 export default (fn: () => void): void => {
   const navigation = useNavigation();
+  const AppStateRef = useRef<EmitterSubscription | null>(null);
 
   // ? App 从前台变为后台时执行
   const onChange = (state: AppStateStatus) => {
@@ -24,7 +30,7 @@ export default (fn: () => void): void => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      AppState.addEventListener('change', onChange);
+      AppStateRef.current = AppState.addEventListener('change', onChange);
     });
 
     return unsubscribe;
@@ -32,7 +38,7 @@ export default (fn: () => void): void => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
-      AppState.removeEventListener('change', onChange);
+      AppStateRef.current?.remove?.();
     });
 
     return unsubscribe;
