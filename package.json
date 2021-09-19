@@ -3,7 +3,7 @@
   "version": "2.0.1",
   "description": "React Native Lifecycle",
   "main": "dist/index.js",
-  "repository": "git@github.com:Chooin/react-native-lifecycle.git",
+  "repository": "git@github.com:chooin/react-native-lifecycle.git",
   "author": "Devin.Zhu",
   "license": "MIT",
   "peerDependencies": {
@@ -13,21 +13,17 @@
   "devDependencies": {
     "@types/react": "^17.0.21",
     "@types/react-native": "^0.65.0",
-    "husky": "^4.3.0",
+    "husky": "^7.0.2",
     "prettier": "^2.4.1",
     "pretty-quick": "^3.1.1",
     "typescript": "^4.4.3"
   },
   "scripts": {
+    "prepare": "husky install",
     "build": "tsc"
   },
   "files": [
     "dist",
     "src"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  }
+  ]
 }
