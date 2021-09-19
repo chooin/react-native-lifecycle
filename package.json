@@ -1,13 +1,14 @@
 {
   "name": "react-native-lifecycle",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "React Native Lifecycle",
   "main": "dist/index.js",
   "repository": "git@github.com:Chooin/react-native-lifecycle.git",
   "author": "Devin.Zhu",
   "license": "MIT",
   "peerDependencies": {
-    "@react-navigation/native": "^5.7.0"
+    "@react-navigation/native": ">= 5.7.0",
+    "react-native": ">= 0.65.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.21",
