@@ -11,8 +11,8 @@ export default (fn: () => void): void => {
   };
 
   useEffect(() => {
-    const unsubscribe = Dimensions.addEventListener('change', onChange);
+    const subscribe = Dimensions.addEventListener('change', onChange);
 
-    return () => unsubscribe.remove();
+    return () => subscribe.remove();
   }, []);
 };

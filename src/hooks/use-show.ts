@@ -35,24 +35,24 @@ export default (fn: () => void): void => {
   };
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+    const subscribe = navigation.addListener('focus', () => {
       AppStateRef.current = AppState.addEventListener('change', onChange);
     });
 
-    return unsubscribe;
+    return subscribe;
   }, [navigation]);
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('blur', () => {
+    const subscribe = navigation.addListener('blur', () => {
       AppStateRef.current?.remove?.();
     });
 
-    return unsubscribe;
+    return subscribe;
   }, [navigation]);
 
   // ? 页面出现在前台时执行
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+    const subscribe = navigation.addListener('focus', () => {
       if (isAppStateChangeRef.current) {
         isAppStateChangeRef.current = false;
       } else {
@@ -60,6 +60,6 @@ export default (fn: () => void): void => {
       }
     });
 
-    return unsubscribe;
+    return subscribe;
   }, [navigation]);
 };

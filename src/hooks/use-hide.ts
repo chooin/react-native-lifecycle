@@ -29,25 +29,25 @@ export default (fn: () => void): void => {
   };
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+    const subscribe = navigation.addListener('focus', () => {
       AppStateRef.current = AppState.addEventListener('change', onChange);
     });
 
-    return unsubscribe;
+    return subscribe;
   }, [navigation]);
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('blur', () => {
+    const subscribe = navigation.addListener('blur', () => {
       AppStateRef.current?.remove?.();
     });
 
-    return unsubscribe;
+    return subscribe;
   }, [navigation]);
 
   // ? 页面从前台变为后台时执行
   useEffect(() => {
-    const unsubscribe = navigation.addListener('blur', fn);
+    const subscribe = navigation.addListener('blur', fn);
 
-    return unsubscribe;
+    return subscribe;
   }, [navigation]);
 };

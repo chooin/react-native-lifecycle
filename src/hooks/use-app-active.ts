@@ -13,8 +13,8 @@ export default (fn: () => void): void => {
   };
 
   useEffect(() => {
-    const unsubscribe = AppState.addEventListener('change', onChange);
+    const subscribe = AppState.addEventListener('change', onChange);
 
-    return () => unsubscribe.remove();
+    return () => subscribe.remove();
   }, []);
 };
