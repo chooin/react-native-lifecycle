@@ -8,21 +8,15 @@ import {
 import { useNavigation } from '@react-navigation/native';
 
 /**
- * 页面出现在前台时执行
+ * 页面从前台变为后台时执行
  * @public
  */
-export default (fn: () => void): void => {
+export function useHide(fn: () => void): void {
   const navigation = useNavigation();
   const AppStateRef = useRef<EmitterSubscription | null>(null);
-  const isAppStateChangeRef = useRef(false);
 
-  // ? App 从后台变为前台时执行
+  // ? App 从前台变为后台时执行
   const onChange = (state: AppStateStatus) => {
-    if (isAppStateChangeRef.current) {
-      if (state === 'active') {
-        fn();
-      }
-    }
     if (
       state ===
       Platform.select({
@@ -30,7 +24,7 @@ export default (fn: () => void): void => {
         android: 'background',
       })
     ) {
-      isAppStateChangeRef.current = true;
+      fn();
     }
   };
 
@@ -50,16 +44,10 @@ export default (fn: () => void): void => {
     return subscribe;
   }, [navigation]);
 
-  // ? 页面出现在前台时执行
+  // ? 页面从前台变为后台时执行
   useEffect(() => {
-    const subscribe = navigation.addListener('focus', () => {
-      if (isAppStateChangeRef.current) {
-        isAppStateChangeRef.current = false;
-      } else {
-        fn();
-      }
-    });
+    const subscribe = navigation.addListener('blur', fn);
 
     return subscribe;
   }, [navigation]);
-};
+}

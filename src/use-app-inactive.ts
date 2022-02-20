@@ -5,7 +5,7 @@ import { AppState, AppStateStatus, Platform } from 'react-native';
  * App 从前台变为后台时执行
  * @public
  */
-export default (fn: () => void): void => {
+export function useAppInactive(fn: () => void): void {
   const onChange = (state: AppStateStatus) => {
     if (
       state ===
@@ -23,4 +23,4 @@ export default (fn: () => void): void => {
 
     return () => subscribe.remove();
   }, []);
-};
+}

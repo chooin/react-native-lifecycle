@@ -5,7 +5,7 @@ import { Dimensions } from 'react-native';
  * 页面尺寸变化时执行
  * @public
  */
-export default (fn: () => void): void => {
+export function useResize(fn: () => void): void {
   const onChange = () => {
     fn();
   };
@@ -15,4 +15,4 @@ export default (fn: () => void): void => {
 
     return () => subscribe.remove();
   }, []);
-};
+}
