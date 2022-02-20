@@ -8,14 +8,13 @@ import {
 import { useNavigation } from '@react-navigation/native';
 
 /**
- * 页面从前台变为后台时执行
+ * Called when the page is hidden or in the application from foreground to background
  * @public
  */
 export function useHide(fn: () => void): void {
   const navigation = useNavigation();
   const AppStateRef = useRef<EmitterSubscription | null>(null);
 
-  // ? App 从前台变为后台时执行
   const onChange = (state: AppStateStatus) => {
     if (
       state ===

@@ -8,7 +8,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 
 /**
- * 页面出现在前台时执行
+ * Called when the page is displayed or in the application from background to foreground
  * @public
  */
 export function useShow(fn: () => void): void {
@@ -16,7 +16,6 @@ export function useShow(fn: () => void): void {
   const AppStateRef = useRef<EmitterSubscription | null>(null);
   const isAppStateChangeRef = useRef(false);
 
-  // ? App 从后台变为前台时执行
   const onChange = (state: AppStateStatus) => {
     if (isAppStateChangeRef.current) {
       if (state === 'active') {

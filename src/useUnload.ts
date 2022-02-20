@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 /**
- * 页面销毁时执行
+ * Called when the page is unloaded
  * @public
  */
 export function useUnload(fn: () => void): void {

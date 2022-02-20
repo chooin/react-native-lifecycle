@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { AppState, AppStateStatus, Platform } from 'react-native';
 
 /**
- * App 从前台变为后台时执行
+ * Called when the application from foreground to background
  * @public
  */
 export function useAppInactive(fn: () => void): void {

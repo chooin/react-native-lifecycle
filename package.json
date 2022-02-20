@@ -1,6 +1,6 @@
 {
   "name": "react-native-lifecycle",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "React Native Lifecycle",
   "main": "dist/index.js",
   "repository": "git@github.com:chooin/react-native-lifecycle.git",
@@ -20,7 +20,7 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "build": "tsc"
+    "build": "tsc && api-extractor run"
   },
   "files": [
     "dist",

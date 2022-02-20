@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 /**
- * 页面创建时执行
+ * Called when the page load
  * @public
  */
 export function useLoad(fn: () => void): void {
