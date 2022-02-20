@@ -1,6 +1,6 @@
 {
   "name": "react-native-lifecycle",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "React Native Lifecycle",
   "main": "dist/index.js",
   "repository": "git@github.com:chooin/react-native-lifecycle.git",
