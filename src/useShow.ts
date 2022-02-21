@@ -49,7 +49,6 @@ export function useShow(fn: () => void): void {
     return subscribe;
   }, [navigation]);
 
-  // ? 页面出现在前台时执行
   useEffect(() => {
     const subscribe = navigation.addListener('focus', () => {
       if (isAppStateChangeRef.current) {

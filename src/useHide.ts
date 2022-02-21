@@ -43,7 +43,6 @@ export function useHide(fn: () => void): void {
     return subscribe;
   }, [navigation]);
 
-  // ? 页面从前台变为后台时执行
   useEffect(() => {
     const subscribe = navigation.addListener('blur', fn);
 
