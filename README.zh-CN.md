@@ -22,7 +22,7 @@ yarn add @react-navigation/native # >= 5.7.0 或 >= 6.0.0
 | 安装包                 | 版本号 | react-native 版本号 |
 | ---------------------- | ------ | ------------------- |
 | react-native-lifecycle | 2.0.0+ | 0.65.0+             |
-| react-native-lifecycle | 1.0.0+ | 0.59.0+             |
+| react-native-lifecycle | 1.2.4+ | 0.59.0+             |
 
 ### 如何使用
 
