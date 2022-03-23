@@ -46,16 +46,16 @@ export default function App() {
 
 ```js
 import {
-  useLoad,
+  useMount,
   useShow,
   useHide,
-  useUnload,
+  useUnmount,
   useResize,
 } from 'react-native-lifecycle';
 
 export default function Page() {
-  // 页面创建时执行
-  useLoad(() => {});
+  // 组件创建时执行
+  useMount(() => {});
 
   // 页面出现在前台时执行
   useShow(() => {});
@@ -63,8 +63,8 @@ export default function Page() {
   // 页面从前台变为后台时执行
   useHide(() => {});
 
-  // 页面销毁时执行
-  useUnload(() => {});
+  // 组件销毁时执行
+  useUnmount(() => {});
 
   // 页面尺寸变化时执行
   useResize(() => {});

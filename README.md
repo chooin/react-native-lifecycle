@@ -46,16 +46,16 @@ export default function App() {
 
 ```js
 import {
-  useLoad,
+  useMount,
   useShow,
   useHide,
-  useUnload,
+  useUnmount,
   useResize,
 } from 'react-native-lifecycle';
 
 export default function Page() {
-  // Called when the page load
-  useLoad(() => {});
+  // Called when the component is mounted
+  useMount(() => {});
 
   // Called when the page is displayed or in the application from background to foreground
   useShow(() => {});
@@ -63,8 +63,8 @@ export default function Page() {
   // Called when the page is hidden or in the application from foreground to background
   useHide(() => {});
 
-  // Called when the page is unloaded
-  useUnload(() => {});
+  // Called when the component is unmounted
+  useUnmount(() => {});
 
   // Called after the page window resize
   useResize(() => {});

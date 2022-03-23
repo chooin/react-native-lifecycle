@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
 /**
- * Called when the page is unloaded
+ * Called when the component is unmounted
  * @public
  */
-export function useUnload(fn: () => void): void {
+export function useUnmount(fn: () => void): void {
   useEffect(() => {
     return () => {
       fn();

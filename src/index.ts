@@ -1,17 +1,17 @@
-import { useLoad } from './useLoad';
+import { useMount } from './useMount';
 import { useShow } from './useShow';
 import { useHide } from './useHide';
-import { useUnload } from './useUnload';
+import { useUnmount } from './useUnmount';
 import { useResize } from './useResize';
 import { useAppActive } from './useAppActive';
 import { useAppInactive } from './useAppInactive';
 
 export {
-  useAppActive,
-  useAppInactive,
-  useLoad,
+  useMount,
   useShow,
   useHide,
-  useUnload,
+  useUnmount,
   useResize,
+  useAppActive,
+  useAppInactive,
 };

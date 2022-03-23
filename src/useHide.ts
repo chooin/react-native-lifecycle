@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import {
   AppState,
   AppStateStatus,
-  EmitterSubscription,
+  NativeEventSubscription,
   Platform,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
  */
 export function useHide(fn: () => void): void {
   const navigation = useNavigation();
-  const AppStateRef = useRef<EmitterSubscription | null>(null);
+  const AppStateRef = useRef<NativeEventSubscription | null>(null);
 
   const onChange = (state: AppStateStatus) => {
     if (

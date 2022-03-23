@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
 /**
- * Called when the page load
+ * Called when the component is mounted
  * @public
  */
-export function useLoad(fn: () => void): void {
+export function useMount(fn: () => void): void {
   useEffect(() => {
     fn();
   }, []);
