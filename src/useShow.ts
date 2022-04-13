@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
  */
 export function useShow(fn: () => void): void {
   const navigation = useNavigation();
-  const AppStateRef = useRef<NativeEventSubscription | null>(null);
+  const AppStateRef = useRef<NativeEventSubscription>();
   const isAppStateChangeRef = useRef(false);
 
   const onChange = (state: AppStateStatus) => {
@@ -34,30 +34,24 @@ export function useShow(fn: () => void): void {
   };
 
   useEffect(() => {
-    const subscribe = navigation.addListener('focus', () => {
+    return navigation.addListener('focus', () => {
       AppStateRef.current = AppState.addEventListener('change', onChange);
     });
-
-    return subscribe;
   }, [navigation]);
 
   useEffect(() => {
-    const subscribe = navigation.addListener('blur', () => {
+    return navigation.addListener('blur', () => {
       AppStateRef.current?.remove?.();
     });
-
-    return subscribe;
   }, [navigation]);
 
   useEffect(() => {
-    const subscribe = navigation.addListener('focus', () => {
+    return navigation.addListener('focus', () => {
       if (isAppStateChangeRef.current) {
         isAppStateChangeRef.current = false;
       } else {
         fn();
       }
     });
-
-    return subscribe;
   }, [navigation]);
 }

@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
  */
 export function useHide(fn: () => void): void {
   const navigation = useNavigation();
-  const AppStateRef = useRef<NativeEventSubscription | null>(null);
+  const AppStateRef = useRef<NativeEventSubscription>();
 
   const onChange = (state: AppStateStatus) => {
     if (
@@ -28,24 +28,18 @@ export function useHide(fn: () => void): void {
   };
 
   useEffect(() => {
-    const subscribe = navigation.addListener('focus', () => {
+    return navigation.addListener('focus', () => {
       AppStateRef.current = AppState.addEventListener('change', onChange);
     });
-
-    return subscribe;
   }, [navigation]);
 
   useEffect(() => {
-    const subscribe = navigation.addListener('blur', () => {
+    return navigation.addListener('blur', () => {
       AppStateRef.current?.remove?.();
     });
-
-    return subscribe;
   }, [navigation]);
 
   useEffect(() => {
-    const subscribe = navigation.addListener('blur', fn);
-
-    return subscribe;
+    return navigation.addListener('blur', fn);
   }, [navigation]);
 }
