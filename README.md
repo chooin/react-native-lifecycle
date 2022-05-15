@@ -31,14 +31,14 @@ yarn add @react-navigation/native # >= 5.7.0 or >= 6.0.0
 ##### Global Hooks
 
 ```js
-import { index, index } from 'react-native-lifecycle';
+import { useAppActive, useAppInactive } from 'react-native-lifecycle';
 
 export default function App() {
   // Called when the application from background to foreground
-  index(() => {});
+  useAppActive(() => {});
 
   // Called when the application from foreground to background
-  index(() => {});
+  useAppInactive(() => {});
 }
 ```
 
@@ -46,16 +46,16 @@ export default function App() {
 
 ```js
 import {
-  index,
+  useMount,
   useShow,
   useHide,
-  index,
+  useUnmount,
   useResize,
 } from 'react-native-lifecycle';
 
 export default function Page() {
   // Called when the component is mounted
-  index(() => {});
+  useMount(() => {});
 
   // Called when the page is displayed or in the application from background to foreground
   useShow(() => {});
@@ -64,7 +64,7 @@ export default function Page() {
   useHide(() => {});
 
   // Called when the component is unmounted
-  index(() => {});
+  useUnmount(() => {});
 
   // Called after the page window resize
   useResize(() => {});

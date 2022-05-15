@@ -1,13 +1,13 @@
-import { index } from '../index';
+import { useUnmount } from '../index';
 import { renderHook } from '@testing-library/react-hooks';
 
-describe('index', () => {
+describe('useUnmount', () => {
   it('should be defined', () => {
-    expect(index).toBeDefined();
+    expect(useUnmount).toBeDefined();
   });
   it('test index', async () => {
     const fn = jest.fn();
-    const hook = renderHook(() => index(fn));
+    const hook = renderHook(() => useUnmount(fn));
     expect(fn).toBeCalledTimes(0);
     hook.rerender();
     expect(fn).toBeCalledTimes(0);

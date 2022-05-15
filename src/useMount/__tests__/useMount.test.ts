@@ -1,11 +1,11 @@
 import { useMount } from '../index';
 import { renderHook } from '@testing-library/react-hooks';
 
-describe('index', () => {
+describe('useMount', () => {
   it('should be defined', () => {
     expect(useMount).toBeDefined();
   });
-  it('test index', async () => {
+  it('test useMount', async () => {
     const fn = jest.fn();
     const hook = renderHook(() => useMount(fn));
     expect(fn).toBeCalledTimes(1);

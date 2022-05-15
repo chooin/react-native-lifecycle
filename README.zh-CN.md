@@ -31,14 +31,14 @@ yarn add @react-navigation/native # >= 5.7.0 或 >= 6.0.0
 ##### 全局 Hooks
 
 ```js
-import { index, index } from 'react-native-lifecycle';
+import { useAppActive, useAppInactive } from 'react-native-lifecycle';
 
 export default function App() {
   // App 从后台变为前台时执行
-  index(() => {});
+  useAppActive(() => {});
 
   // App 从前台变为后台时执行
-  index(() => {});
+  useAppInactive(() => {});
 }
 ```
 
@@ -46,16 +46,16 @@ export default function App() {
 
 ```js
 import {
-  index,
+  useMount,
   useShow,
   useHide,
-  index,
+  useUnmount,
   useResize,
 } from 'react-native-lifecycle';
 
 export default function Page() {
   // 组件创建时执行
-  index(() => {});
+  useMount(() => {});
 
   // 页面出现在前台时执行
   useShow(() => {});
@@ -64,7 +64,7 @@ export default function Page() {
   useHide(() => {});
 
   // 组件销毁时执行
-  index(() => {});
+  useUnmount(() => {});
 
   // 页面尺寸变化时执行
   useResize(() => {});
