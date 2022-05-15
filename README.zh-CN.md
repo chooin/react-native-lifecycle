@@ -1,7 +1,9 @@
 # React Native Lifecycle
 
-[![Latest Version on NPM](https://img.shields.io/npm/v/react-native-lifecycle.svg?style=flat-square)](https://npmjs.com/package/react-native-lifecycle)
-[![npm](https://img.shields.io/npm/dt/react-native-lifecycle.svg?style=flat-square)](https://www.npmjs.com/package/react-native-lifecycle)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/chooin/react-native-lifecycle/blob/master/LICENSE)
+[![Latest Version on NPM](https://img.shields.io/npm/v/react-native-lifecycle.svg)](https://npmjs.com/package/react-native-lifecycle)
+[![npm](https://img.shields.io/npm/dt/react-native-lifecycle.svg)](https://www.npmjs.com/package/react-native-lifecycle)
+[![build status](https://github.com/chooin/react-native-lifecycle/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/chooin/react-native-lifecycle/actions/workflows/test.yml)
 
 [English](./README.md)
 
