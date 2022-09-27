@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
   schedule:
     - cron: '0 2 * * *'
 
@@ -25,6 +25,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - run: rm -rf yarn.lock
-      - run: yarn
+      - run: yarn add @react-navigation/native react-native react
       - run: yarn test
