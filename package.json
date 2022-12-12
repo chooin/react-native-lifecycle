@@ -1,16 +1,17 @@
 {
-  "name": "react-native-lifecycle",
+  "name": "react-native-tools-next",
   "version": "2.1.1",
-  "description": "React Native Lifecycle",
+  "description": "React Native tools",
   "main": "dist/index.js",
-  "repository": "git@github.com:chooin/react-native-lifecycle.git",
-  "author": "Devin.Zhu",
+  "repository": "git@github.com:name-q/react-native-tools-next.git",
+  "author": "Devin.Zhu & name-q",
   "license": "MIT",
   "peerDependencies": {
     "@react-navigation/native": ">= 5.7.0",
     "react-native": ">= 0.65.0"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.33.7",
     "@react-navigation/native": "^6.0.8",
     "@testing-library/react-hooks": "^8.0.0",
     "@types/jest": "^27.5.1",
@@ -28,10 +29,9 @@
     "zx": "^6.0.7"
   },
   "scripts": {
-    "preinstall": "npx only-allow yarn",
     "prepare": "husky install",
     "test": "scripts/test.mjs",
-    "build": "scripts/build.mjs"
+    "build": "rm -rf ./dist && scripts/build.mjs"
   },
   "files": [
     "dist",
