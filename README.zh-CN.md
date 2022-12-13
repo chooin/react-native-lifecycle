@@ -23,7 +23,7 @@ yarn add @react-navigation/native # >= 5.7.0 或 >= 6.0.0
 
 | 安装包                  | 版本号 | react-native 版本号 |
 | ----------------------- | ------ | ------------------- |
-| react-native-tools-next | 2.1.1+ | 0.65.0+             |
+| react-native-tools-next | 2.1.2+ | 0.65.0+             |
 
 ### 如何使用
 

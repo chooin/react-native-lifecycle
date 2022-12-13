@@ -23,7 +23,7 @@ yarn add @react-navigation/native # >= 6.0.0
 
 | package name            | version | react-native version |
 | ----------------------- | ------- | -------------------- |
-| react-native-tools-next | 2.1.1+  | 0.65.0+              |
+| react-native-tools-next | 2.1.2+  | 0.65.0+              |
 
 ### Usage
 
