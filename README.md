@@ -1,39 +1,38 @@
-# React Native Lifecycle
+# React Native Tools Next
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/chooin/react-native-lifecycle/blob/master/LICENSE)
-[![Latest Version on NPM](https://img.shields.io/npm/v/react-native-lifecycle.svg)](https://npmjs.com/package/react-native-lifecycle)
-[![npm](https://img.shields.io/npm/dt/react-native-lifecycle.svg)](https://www.npmjs.com/package/react-native-lifecycle)
-[![build status](https://github.com/chooin/react-native-lifecycle/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/chooin/react-native-lifecycle/actions/workflows/test.yml)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/name-q/react-native-tools-next/blob/master/LICENSE)
+[![Latest Version on NPM](https://img.shields.io/npm/v/react-native-tools-next.svg)](https://npmjs.com/package/react-native-tools-next)
+[![npm](https://img.shields.io/npm/dt/react-native-tools-next.svg)](https://www.npmjs.com/package/react-native-tools-next)
+[![build status](https://github.com/name-q/react-native-tools-next/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/name-q/react-native-tools-next/actions/workflows/test.yml)
 
 [简体中文](./README.zh-CN.md)
 
 ### Install
 
 ```sh
-yarn add react-native-lifecycle
+yarn add react-native-tools-next
 ```
 
 ### Peer Dependencies
 
 ```sh
-yarn add @react-navigation/native # >= 5.7.0 or >= 6.0.0
+yarn add @react-navigation/native # >= 6.0.0
 ```
 
 ### Support
 
-| package name           | version | react-native version |
-| ---------------------- | ------- | -------------------- |
-| react-native-lifecycle | 2.0.0+  | 0.65.0+              |
-| react-native-lifecycle | 1.2.4+  | 0.59.0+              |
+| package name            | version | react-native version |
+| ----------------------- | ------- | -------------------- |
+| react-native-tools-next | 2.1.1+  | 0.65.0+              |
 
 ### Usage
 
-[Example](https://github.com/Chooin/react-native-lifecycle-example)
+[Example](https://github.com/name-q/react-native-tools-next-example)
 
 ##### Global Hooks
 
 ```js
-import { useAppActive, useAppInactive } from 'react-native-lifecycle';
+import { useAppActive, useAppInactive } from 'react-native-tools-next';
 
 export default function App() {
   // Called when the application from background to foreground
@@ -53,7 +52,8 @@ import {
   useHide,
   useUnmount,
   useResize,
-} from 'react-native-lifecycle';
+  useWaitRemove,
+} from 'react-native-tools-next';
 
 export default function Page() {
   // Called when the component is mounted
@@ -70,5 +70,25 @@ export default function Page() {
 
   // Called after the page window resize
   useResize(() => {});
+
+  // Intercept return to make the return controllable
+  useWaitRemove(exit => {
+    Alert.alert(
+      'useWaitRemove Demo',
+      'Are you sure to discard them and leave the screen?',
+      [
+        {
+          text: "Don't leave",
+          style: 'cancel',
+          onPress: () => {},
+        },
+        {
+          text: 'Discard',
+          style: 'destructive',
+          onPress: () => exit(),
+        },
+      ],
+    );
+  });
 }
 ```
