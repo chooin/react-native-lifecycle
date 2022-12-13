@@ -5,6 +5,7 @@ import { useUnmount } from './useUnmount';
 import { useResize } from './useResize';
 import { useAppActive } from './useAppActive';
 import { useAppInactive } from './useAppInactive';
+import useWaitRemove from './useWaitRemove';
 
 export {
   useMount,
@@ -14,4 +15,5 @@ export {
   useResize,
   useAppActive,
   useAppInactive,
+  useWaitRemove,
 };
