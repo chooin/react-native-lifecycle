@@ -23,7 +23,7 @@ yarn add @react-navigation/native # >= 6.0.0
 
 | package name            | version | react-native version |
 | ----------------------- | ------- | -------------------- |
-| react-native-tools-next | 2.1.2+  | 0.65.0+              |
+| react-native-tools-next | 2.1.4+  | 0.65.0+              |
 
 ### Usage
 
@@ -90,5 +90,53 @@ export default function Page() {
       ],
     );
   });
+}
+```
+
+---
+
+##### Util
+
+###### **msg**
+
+```js
+import {
+  msg
+} from 'react-native-tools-next';
+
+// msg => {on,off,emit,all,exist}
+// Implement global messages:
+//   subscribe, unsubscribe, and send messages to subscription
+
+export function PageA() {
+  React.useEffect(() => {
+    const subscribe = msg.on('A', (message) => {
+      Alert.alert(
+        `pageA message received:::${message}`
+      );
+    });
+    // uninstall subscribe
+    return subscribe.remove;
+  }, []);
+  ...
+}
+
+export function PageB(){
+    ...
+    return (
+      <>
+        <... onPress={
+          () => {
+            const result = msg.emit('A', 'hellow pageA');
+            console.log(result, '< boolean');
+          }}
+        >
+          <..>send a message to the pageA</..>
+        </...>
+        <... onPress={() => msg.off('A')}>
+          <..>uninstall pageA subscribe</..>
+        </...>
+      </>
+    )
 }
 ```

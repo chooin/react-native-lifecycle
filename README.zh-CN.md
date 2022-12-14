@@ -16,14 +16,14 @@ yarn add react-native-tools-next
 ### 第三方依赖
 
 ```sh
-yarn add @react-navigation/native # >= 5.7.0 或 >= 6.0.0
+yarn add @react-navigation/native # >= 6.0.0
 ```
 
 ### 支持
 
 | 安装包                  | 版本号 | react-native 版本号 |
 | ----------------------- | ------ | ------------------- |
-| react-native-tools-next | 2.1.2+ | 0.65.0+             |
+| react-native-tools-next | 2.1.4+ | 0.65.0+             |
 
 ### 如何使用
 
@@ -90,5 +90,52 @@ export default function Page() {
       ],
     );
   });
+}
+```
+
+---
+
+##### Util
+
+###### **msg**
+
+```js
+import {
+  msg
+} from 'react-native-tools-next';
+
+// msg => {on,off,emit,all,exist}
+// 实现全局消息：订阅、取消订阅、发送、所有订阅Map值、是否存在此订阅Boolean
+
+export function PageA() {
+  React.useEffect(() => {
+    const subscribe = msg.on('A', (message) => {
+      Alert.alert(
+        `pageA 收到消息:::${message}`
+      );
+    });
+    // 取消订阅
+    return subscribe.remove;
+  }, []);
+  ...
+}
+
+export function PageB(){
+    ...
+    return (
+      <>
+        <... onPress={
+          () => {
+            const result = msg.emit('A', 'hellow pageA');
+            console.log(result, '< boolean');
+          }}
+        >
+          <..>向pageA发送消息</..>
+        </...>
+        <... onPress={() => msg.off('A')}>
+          <..>取消pageA的订阅</..>
+        </...>
+      </>
+    )
 }
 ```
