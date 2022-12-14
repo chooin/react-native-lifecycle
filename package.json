@@ -36,5 +36,8 @@
   "files": [
     "dist",
     "src"
-  ]
+  ],
+  "dependencies": {
+    "mitt": "^3.0.0"
+  }
 }

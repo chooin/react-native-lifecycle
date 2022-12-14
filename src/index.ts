@@ -7,6 +7,8 @@ import { useAppActive } from './useAppActive';
 import { useAppInactive } from './useAppInactive';
 import useWaitRemove from './useWaitRemove';
 
+// util
+import * as msg from './util/msg';
 export {
   useMount,
   useShow,
@@ -16,4 +18,7 @@ export {
   useAppActive,
   useAppInactive,
   useWaitRemove,
+
+  // util
+  msg,
 };
