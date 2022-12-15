@@ -5,7 +5,7 @@ import { AppState, AppStateStatus, Platform } from 'react-native';
  * Called when the application from foreground to background
  * @public
  */
-export function useAppInactive(fn: () => void): void {
+export default function useAppInactive(fn: () => void): void {
   const onChange = (state: AppStateStatus) => {
     if (
       state ===

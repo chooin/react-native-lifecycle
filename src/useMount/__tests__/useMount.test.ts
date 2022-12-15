@@ -1,4 +1,4 @@
-import { useMount } from '../index';
+import useMount from '../index';
 import { renderHook } from '@testing-library/react-hooks';
 
 describe('useMount', () => {

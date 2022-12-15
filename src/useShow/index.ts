@@ -11,7 +11,7 @@ import { useNavigation } from '@react-navigation/native';
  * Called when the page is displayed or in the application from background to foreground
  * @public
  */
-export function useShow(fn: () => void): void {
+export default function useShow(fn: () => void): void {
   const navigation = useNavigation();
   const AppStateRef = useRef<NativeEventSubscription>();
   const isAppStateChangeRef = useRef(false);

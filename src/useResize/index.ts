@@ -5,7 +5,7 @@ import { Dimensions } from 'react-native';
  * Called after the page window resize
  * @public
  */
-export function useResize(fn: () => void): void {
+export default function useResize(fn: () => void): void {
   const onChange = () => {
     fn();
   };

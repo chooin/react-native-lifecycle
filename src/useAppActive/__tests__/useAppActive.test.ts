@@ -1,4 +1,4 @@
-import { useAppActive } from '../index';
+import useAppActive from '../index';
 import { renderHook } from '@testing-library/react-hooks';
 
 describe('useAppActive', () => {

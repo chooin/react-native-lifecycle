@@ -1,4 +1,4 @@
-import { useUnmount } from '../index';
+import useUnmount from '../index';
 import { renderHook } from '@testing-library/react-hooks';
 
 describe('useUnmount', () => {
