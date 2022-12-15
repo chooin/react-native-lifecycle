@@ -5,7 +5,7 @@ import { useUnmount } from './useUnmount';
 import { useResize } from './useResize';
 import { useAppActive } from './useAppActive';
 import { useAppInactive } from './useAppInactive';
-import useWaitRemove from './useWaitRemove';
+import useWaitReturn from './useWaitReturn';
 
 // util
 import * as msg from './util/msg';
@@ -17,7 +17,7 @@ export {
   useResize,
   useAppActive,
   useAppInactive,
-  useWaitRemove,
+  useWaitReturn,
 
   // util
   msg,

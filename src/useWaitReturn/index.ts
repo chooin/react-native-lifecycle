@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
  * Intercept return to make the return controllable
  * @public
  */
-export default function useWaitRemove(fn: (exit: Function) => void): void {
+export default function useWaitReturn(fn: (exit: Function) => void): void {
   const navigation = useNavigation();
 
   useEffect(() => {

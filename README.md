@@ -52,7 +52,7 @@ import {
   useHide,
   useUnmount,
   useResize,
-  useWaitRemove,
+  useWaitReturn,
 } from 'react-native-tools-next';
 
 export default function Page() {
@@ -72,9 +72,9 @@ export default function Page() {
   useResize(() => {});
 
   // Intercept return to make the return controllable
-  useWaitRemove(exit => {
+  useWaitReturn(exit => {
     Alert.alert(
-      'useWaitRemove Demo',
+      'useWaitReturn Demo',
       'Are you sure to discard them and leave the screen?',
       [
         {
