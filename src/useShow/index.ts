@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import {
   AppState,
   AppStateStatus,
@@ -16,35 +16,37 @@ export default function useShow(fn: () => void): void {
   const AppStateRef = useRef<NativeEventSubscription>();
   const isAppStateChangeRef = useRef(false);
 
-  const onChange = (state: AppStateStatus) => {
-    if (isAppStateChangeRef.current) {
-      if (state === 'active') {
-        fn();
+  const onChange = useCallback(
+    (state: AppStateStatus) => {
+      if (isAppStateChangeRef.current) {
+        if (state === 'active') {
+          fn();
+        }
       }
-    }
-    if (
-      state ===
-      Platform.select({
-        ios: 'inactive',
-        android: 'background',
-      })
-    ) {
-      isAppStateChangeRef.current = true;
-    }
-  };
+      if (
+        state ===
+        Platform.select({
+          ios: 'inactive',
+          android: 'background',
+        })
+      ) {
+        isAppStateChangeRef.current = true;
+      }
+    },
+    [fn],
+  );
 
   useEffect(() => {
     return navigation.addListener('focus', () => {
       AppStateRef.current = AppState.addEventListener('change', onChange);
     });
-  }, [navigation]);
+  }, [navigation, onChange]);
 
   useEffect(() => {
     return navigation.addListener('blur', () => {
       AppStateRef.current?.remove?.();
     });
   }, [navigation]);
-
   useEffect(() => {
     return navigation.addListener('focus', () => {
       if (isAppStateChangeRef.current) {
@@ -53,5 +55,5 @@ export default function useShow(fn: () => void): void {
         fn();
       }
     });
-  }, [navigation]);
+  }, [navigation, fn]);
 }
