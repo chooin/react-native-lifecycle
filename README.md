@@ -17,22 +17,28 @@ yarn add react-native-tools-next
 
 ```sh
 yarn add @react-navigation/native # >= 6.0.0
+yarn add react-native-permissions
 ```
 
 ### Support
 
 | package name            | version | react-native version |
 | ----------------------- | ------- | -------------------- |
-| react-native-tools-next | 2.1.4+  | 0.65.0+              |
+| react-native-tools-next | 2.1.5+  | 0.65.0+              |
 
 ### Usage
 
 [Example](https://github.com/name-q/react-native-tools-next-example)
 
-##### Global Hooks
+### Global Hooks
 
 ```js
-import { useAppActive, useAppInactive } from 'react-native-tools-next';
+import {
+  useAppActive,
+  useAppInactive,
+  usePermissions,
+} from 'react-native-tools-next';
+import { PERMISSIONS } from 'react-native-permissions';
 
 export default function App() {
   // Called when the application from background to foreground
@@ -40,10 +46,30 @@ export default function App() {
 
   // Called when the application from foreground to background
   useAppInactive(() => {});
+
+  // Check whether multiple permissions are open
+  // or request multiple permissions
+  // status ()=>Promise<boolean> permission enabled?
+  // request ()=>Promise<void> Apply to the system for permission
+  // openSettings ()=>Promise<void> open setting method
+  const [status, request, openSettings] = usePermissions([
+    PERMISSIONS.IOS.CAMERA,
+    PERMISSIONS.ANDROID.CAMERA,
+  ]);
+  const handleClickOrUseShow = async () => {
+    let pass = await status();
+    if (!pass) {
+      try {
+        await request();
+      } catch {
+        openSettings();
+      }
+    }
+  };
 }
 ```
 
-##### Page/Screen Hooks
+### Page/Screen Hooks
 
 ```js
 import {
@@ -59,10 +85,12 @@ export default function Page() {
   // Called when the component is mounted
   useMount(() => {});
 
-  // Called when the page is displayed or in the application from background to foreground
+  // Called when the page is displayed
+  // or in the application from background to foreground
   useShow(() => {});
 
-  // Called when the page is hidden or in the application from foreground to background
+  // Called when the page is hidden or in the application
+  // from foreground to background
   useHide(() => {});
 
   // Called when the component is unmounted
@@ -95,9 +123,9 @@ export default function Page() {
 
 ---
 
-##### Util
+### Util
 
-###### **msg**
+##### **msg**
 
 ```js
 import {
@@ -138,5 +166,24 @@ export function PageB(){
         </...>
       </>
     )
+}
+```
+
+##### requestPermissions
+
+```js
+import { requestPermissions } from 'react-native-tools-next';
+import { PERMISSIONS, RESULTS } from 'react-native-permissions';
+// Apply to the system for permission that has not been opened
+// When obtaining permission fails, return to the open setting method
+const handleClickOrUseShow = async() => {
+  try {
+     await requestPermissions(
+       [PERMISSIONS.IOS.CAMERA, PERMISSIONS.ANDROID.CAMERA],
+       RESULTS.GRANTED,
+     );
+   } catch (error:any) {
+     error.openSettings();
+   }
 }
 ```

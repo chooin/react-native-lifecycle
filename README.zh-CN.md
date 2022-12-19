@@ -17,22 +17,28 @@ yarn add react-native-tools-next
 
 ```sh
 yarn add @react-navigation/native # >= 6.0.0
+yarn add react-native-permissions
 ```
 
 ### 支持
 
 | 安装包                  | 版本号 | react-native 版本号 |
 | ----------------------- | ------ | ------------------- |
-| react-native-tools-next | 2.1.4+ | 0.65.0+             |
+| react-native-tools-next | 2.1.5+ | 0.65.0+             |
 
 ### 如何使用
 
 [例子](https://github.com/Chooin/react-native-tools-next-example)
 
-##### 全局 Hooks
+### 全局 Hooks
 
 ```js
-import { useAppActive, useAppInactive } from 'react-native-tools-next';
+import {
+  useAppActive,
+  useAppInactive,
+  usePermissions,
+} from 'react-native-tools-next';
+import { PERMISSIONS } from 'react-native-permissions';
 
 export default function App() {
   // App 从后台变为前台时执行
@@ -40,10 +46,29 @@ export default function App() {
 
   // App 从前台变为后台时执行
   useAppInactive(() => {});
+
+  // 检查是否打开了多个权限 或请求多个权限
+  // status ()=>Promise<boolean> 权限已启用？
+  // request ()=>Promise<void> 向系统申请权限
+  // openSettings ()=>Promise<void> 打开系统权限设置
+  const [status, request, openSettings] = usePermissions([
+    PERMISSIONS.IOS.CAMERA,
+    PERMISSIONS.ANDROID.CAMERA,
+  ]);
+  const handleClickOrUseShow = async () => {
+    let pass = await status();
+    if (!pass) {
+      try {
+        await request();
+      } catch {
+        openSettings();
+      }
+    }
+  };
 }
 ```
 
-##### 页面 Hooks
+### 页面 Hooks
 
 ```js
 import {
@@ -95,9 +120,9 @@ export default function Page() {
 
 ---
 
-##### Util
+### Util
 
-###### **msg**
+##### **msg**
 
 ```js
 import {
@@ -137,5 +162,24 @@ export function PageB(){
         </...>
       </>
     )
+}
+```
+
+##### requestPermissions
+
+```js
+import { requestPermissions } from 'react-native-tools-next';
+import { PERMISSIONS, RESULTS } from 'react-native-permissions';
+// 向系统申请尚未打开的权限
+// 当获取权限失败时 返回打开系统权限设置的方法
+const handleClickOrUseShow = async() => {
+  try {
+     await requestPermissions(
+       [PERMISSIONS.IOS.CAMERA, PERMISSIONS.ANDROID.CAMERA],
+       RESULTS.GRANTED,
+     );
+   } catch (error:any) {
+     error.openSettings();
+   }
 }
 ```

@@ -4380,6 +4380,10 @@ react-native-gradle-plugin@^0.0.6:
   version "0.0.6"
   resolved "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.6.tgz#b61a9234ad2f61430937911003cddd7e15c72b45"
 
+react-native-permissions@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.npmjs.org/react-native-permissions/-/react-native-permissions-3.6.1.tgz#73adcc1cef8cd57a9ef167b4507405f4ff5749c4"
+
 react-native@^0.68.2:
   version "0.68.4"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.68.4.tgz#c52c590f93e9d115010e458650957824c0b1406e"

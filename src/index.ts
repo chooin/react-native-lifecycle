@@ -6,6 +6,7 @@ import useResize from './useResize';
 import useAppActive from './useAppActive';
 import useAppInactive from './useAppInactive';
 import useWaitReturn from './useWaitReturn';
+import { usePermissions, requestPermissions } from './usePermissions';
 
 // util
 import * as msg from './util/msg';
@@ -19,7 +20,9 @@ export {
   useAppActive,
   useAppInactive,
   useWaitReturn,
+  usePermissions,
 
   // util
   msg,
+  requestPermissions,
 };

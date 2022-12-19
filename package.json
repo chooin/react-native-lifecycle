@@ -1,6 +1,6 @@
 {
   "name": "react-native-tools-next",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "React Native tools",
   "main": "dist/index.js",
   "repository": "git@github.com:name-q/react-native-tools-next.git",
@@ -38,6 +38,7 @@
     "src"
   ],
   "dependencies": {
-    "mitt": "^3.0.0"
+    "mitt": "^3.0.0",
+    "react-native-permissions": "^3.6.1"
   }
 }
