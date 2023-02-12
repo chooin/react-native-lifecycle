@@ -7,8 +7,8 @@ module.exports = {
     },
   },
   transform: {
-    '^.+\\.jsx$': 'babel-jest',
-    '^.+\\.tsx?$': 'ts-jest',
+    '\\.jsx?$': 'babel-jest',
+    '\\.tsx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   testPathIgnorePatterns: ['node_modules', 'lib'],

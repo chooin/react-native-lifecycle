@@ -813,6 +813,12 @@
   dependencies:
     "@sinclair/typebox" "^0.24.1"
 
+"@jest/schemas@^29.4.2":
+  version "29.4.2"
+  resolved "https://registry.npmjs.org/@jest/schemas/-/schemas-29.4.2.tgz#cf7cfe97c5649f518452b176c47ed07486270fc1"
+  dependencies:
+    "@sinclair/typebox" "^0.25.16"
+
 "@jest/source-map@^28.1.2":
   version "28.1.2"
   resolved "https://registry.npmjs.org/@jest/source-map/-/source-map-28.1.2.tgz#7fe832b172b497d6663cdff6c13b0a920e139e24"
@@ -859,6 +865,26 @@
     slash "^3.0.0"
     write-file-atomic "^4.0.1"
 
+"@jest/transform@^29.4.2":
+  version "29.4.2"
+  resolved "https://registry.npmjs.org/@jest/transform/-/transform-29.4.2.tgz#b24b72dbab4c8675433a80e222d6a8ef4656fb81"
+  dependencies:
+    "@babel/core" "^7.11.6"
+    "@jest/types" "^29.4.2"
+    "@jridgewell/trace-mapping" "^0.3.15"
+    babel-plugin-istanbul "^6.1.1"
+    chalk "^4.0.0"
+    convert-source-map "^2.0.0"
+    fast-json-stable-stringify "^2.1.0"
+    graceful-fs "^4.2.9"
+    jest-haste-map "^29.4.2"
+    jest-regex-util "^29.4.2"
+    jest-util "^29.4.2"
+    micromatch "^4.0.4"
+    pirates "^4.0.4"
+    slash "^3.0.0"
+    write-file-atomic "^4.0.2"
+
 "@jest/types@^26.6.2":
   version "26.6.2"
   resolved "https://registry.npmjs.org/@jest/types/-/types-26.6.2.tgz#bef5a532030e1d88a2f5a6d933f84e97226ed48e"
@@ -884,6 +910,17 @@
   resolved "https://registry.npmjs.org/@jest/types/-/types-28.1.3.tgz#b05de80996ff12512bc5ceb1d208285a7d11748b"
   dependencies:
     "@jest/schemas" "^28.1.3"
+    "@types/istanbul-lib-coverage" "^2.0.0"
+    "@types/istanbul-reports" "^3.0.0"
+    "@types/node" "*"
+    "@types/yargs" "^17.0.8"
+    chalk "^4.0.0"
+
+"@jest/types@^29.4.2":
+  version "29.4.2"
+  resolved "https://registry.npmjs.org/@jest/types/-/types-29.4.2.tgz#8f724a414b1246b2bfd56ca5225d9e1f39540d82"
+  dependencies:
+    "@jest/schemas" "^29.4.2"
     "@types/istanbul-lib-coverage" "^2.0.0"
     "@types/istanbul-reports" "^3.0.0"
     "@types/node" "*"
@@ -917,7 +954,7 @@
   version "1.4.14"
   resolved "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.14.tgz#add4c98d341472a289190b424efbdb096991bb24"
 
-"@jridgewell/trace-mapping@^0.3.12", "@jridgewell/trace-mapping@^0.3.13", "@jridgewell/trace-mapping@^0.3.9":
+"@jridgewell/trace-mapping@^0.3.12", "@jridgewell/trace-mapping@^0.3.13", "@jridgewell/trace-mapping@^0.3.15", "@jridgewell/trace-mapping@^0.3.9":
   version "0.3.17"
   resolved "https://registry.npmjs.org/@jridgewell/trace-mapping/-/trace-mapping-0.3.17.tgz#793041277af9073b0951a7fe0f0d8c4c98c36985"
   dependencies:
@@ -1222,6 +1259,10 @@
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
   resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.24.51.tgz#645f33fe4e02defe26f2f5c0410e1c094eac7f5f"
+
+"@sinclair/typebox@^0.25.16":
+  version "0.25.21"
+  resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.25.21.tgz#763b05a4b472c93a8db29b2c3e359d55b29ce272"
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.3"
@@ -1559,6 +1600,18 @@ babel-jest@^28.1.3:
     graceful-fs "^4.2.9"
     slash "^3.0.0"
 
+babel-jest@^29.4.1:
+  version "29.4.2"
+  resolved "https://registry.npmjs.org/babel-jest/-/babel-jest-29.4.2.tgz#b17b9f64be288040877cbe2649f91ac3b63b2ba6"
+  dependencies:
+    "@jest/transform" "^29.4.2"
+    "@types/babel__core" "^7.1.14"
+    babel-plugin-istanbul "^6.1.1"
+    babel-preset-jest "^29.4.2"
+    chalk "^4.0.0"
+    graceful-fs "^4.2.9"
+    slash "^3.0.0"
+
 babel-plugin-istanbul@^6.1.1:
   version "6.1.1"
   resolved "https://registry.npmjs.org/babel-plugin-istanbul/-/babel-plugin-istanbul-6.1.1.tgz#fa88ec59232fd9b4e36dbbc540a8ec9a9b47da73"
@@ -1572,6 +1625,15 @@ babel-plugin-istanbul@^6.1.1:
 babel-plugin-jest-hoist@^28.1.3:
   version "28.1.3"
   resolved "https://registry.npmjs.org/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-28.1.3.tgz#1952c4d0ea50f2d6d794353762278d1d8cca3fbe"
+  dependencies:
+    "@babel/template" "^7.3.3"
+    "@babel/types" "^7.3.3"
+    "@types/babel__core" "^7.1.14"
+    "@types/babel__traverse" "^7.0.6"
+
+babel-plugin-jest-hoist@^29.4.2:
+  version "29.4.2"
+  resolved "https://registry.npmjs.org/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-29.4.2.tgz#22aa43e255230f02371ffef1cac7eedef58f60bc"
   dependencies:
     "@babel/template" "^7.3.3"
     "@babel/types" "^7.3.3"
@@ -1657,6 +1719,13 @@ babel-preset-jest@^28.1.3:
   resolved "https://registry.npmjs.org/babel-preset-jest/-/babel-preset-jest-28.1.3.tgz#5dfc20b99abed5db994406c2b9ab94c73aaa419d"
   dependencies:
     babel-plugin-jest-hoist "^28.1.3"
+    babel-preset-current-node-syntax "^1.0.0"
+
+babel-preset-jest@^29.4.2:
+  version "29.4.2"
+  resolved "https://registry.npmjs.org/babel-preset-jest/-/babel-preset-jest-29.4.2.tgz#f0b20c6a79a9f155515e72a2d4f537fe002a4e38"
+  dependencies:
+    babel-plugin-jest-hoist "^29.4.2"
     babel-preset-current-node-syntax "^1.0.0"
 
 balanced-match@^1.0.0:
@@ -2005,6 +2074,10 @@ connect@^3.6.5:
 convert-source-map@^1.4.0, convert-source-map@^1.6.0, convert-source-map@^1.7.0:
   version "1.9.0"
   resolved "https://registry.npmjs.org/convert-source-map/-/convert-source-map-1.9.0.tgz#7faae62353fb4213366d0ca98358d22e8368b05f"
+
+convert-source-map@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/convert-source-map/-/convert-source-map-2.0.0.tgz#4b560f649fc4e918dd0ab75cf4961e8bc882d82a"
 
 copy-descriptor@^0.1.0:
   version "0.1.1"
@@ -2357,7 +2430,7 @@ fast-glob@^3.2.11:
     merge2 "^1.3.0"
     micromatch "^4.0.4"
 
-fast-json-stable-stringify@2.x, fast-json-stable-stringify@^2.0.0:
+fast-json-stable-stringify@2.x, fast-json-stable-stringify@^2.0.0, fast-json-stable-stringify@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/fast-json-stable-stringify/-/fast-json-stable-stringify-2.1.0.tgz#874bf69c6f404c2b5d99c481341399fd55892633"
 
@@ -3071,6 +3144,24 @@ jest-haste-map@^28.1.3:
   optionalDependencies:
     fsevents "^2.3.2"
 
+jest-haste-map@^29.4.2:
+  version "29.4.2"
+  resolved "https://registry.npmjs.org/jest-haste-map/-/jest-haste-map-29.4.2.tgz#9112df3f5121e643f1b2dcbaa86ab11b0b90b49a"
+  dependencies:
+    "@jest/types" "^29.4.2"
+    "@types/graceful-fs" "^4.1.3"
+    "@types/node" "*"
+    anymatch "^3.0.3"
+    fb-watchman "^2.0.0"
+    graceful-fs "^4.2.9"
+    jest-regex-util "^29.4.2"
+    jest-util "^29.4.2"
+    jest-worker "^29.4.2"
+    micromatch "^4.0.4"
+    walker "^1.0.8"
+  optionalDependencies:
+    fsevents "^2.3.2"
+
 jest-leak-detector@^28.1.3:
   version "28.1.3"
   resolved "https://registry.npmjs.org/jest-leak-detector/-/jest-leak-detector-28.1.3.tgz#a6685d9b074be99e3adee816ce84fd30795e654d"
@@ -3128,6 +3219,10 @@ jest-regex-util@^27.5.1:
 jest-regex-util@^28.0.2:
   version "28.0.2"
   resolved "https://registry.npmjs.org/jest-regex-util/-/jest-regex-util-28.0.2.tgz#afdc377a3b25fb6e80825adcf76c854e5bf47ead"
+
+jest-regex-util@^29.4.2:
+  version "29.4.2"
+  resolved "https://registry.npmjs.org/jest-regex-util/-/jest-regex-util-29.4.2.tgz#19187cca35d301f8126cf7a021dd4dcb7b58a1ca"
 
 jest-resolve-dependencies@^28.1.3:
   version "28.1.3"
@@ -3260,6 +3355,17 @@ jest-util@^28.0.0, jest-util@^28.1.3:
     graceful-fs "^4.2.9"
     picomatch "^2.2.3"
 
+jest-util@^29.4.2:
+  version "29.4.2"
+  resolved "https://registry.npmjs.org/jest-util/-/jest-util-29.4.2.tgz#3db8580b295df453a97de4a1b42dd2578dabd2c2"
+  dependencies:
+    "@jest/types" "^29.4.2"
+    "@types/node" "*"
+    chalk "^4.0.0"
+    ci-info "^3.2.0"
+    graceful-fs "^4.2.9"
+    picomatch "^2.2.3"
+
 jest-validate@^26.5.2:
   version "26.6.2"
   resolved "https://registry.npmjs.org/jest-validate/-/jest-validate-26.6.2.tgz#23d380971587150467342911c3d7b4ac57ab20ec"
@@ -3316,6 +3422,15 @@ jest-worker@^28.1.3:
   resolved "https://registry.npmjs.org/jest-worker/-/jest-worker-28.1.3.tgz#7e3c4ce3fa23d1bb6accb169e7f396f98ed4bb98"
   dependencies:
     "@types/node" "*"
+    merge-stream "^2.0.0"
+    supports-color "^8.0.0"
+
+jest-worker@^29.4.2:
+  version "29.4.2"
+  resolved "https://registry.npmjs.org/jest-worker/-/jest-worker-29.4.2.tgz#d9b2c3bafc69311d84d94e7fb45677fc8976296f"
+  dependencies:
+    "@types/node" "*"
+    jest-util "^29.4.2"
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
@@ -5334,7 +5449,7 @@ write-file-atomic@^2.3.0:
     imurmurhash "^0.1.4"
     signal-exit "^3.0.2"
 
-write-file-atomic@^4.0.1:
+write-file-atomic@^4.0.1, write-file-atomic@^4.0.2:
   version "4.0.2"
   resolved "https://registry.npmjs.org/write-file-atomic/-/write-file-atomic-4.0.2.tgz#a9df01ae5b77858a027fd2e80768ee433555fcfd"
   dependencies:

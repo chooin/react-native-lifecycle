@@ -11,6 +11,7 @@
     "react-native": ">= 0.65.0"
   },
   "devDependencies": {
+    "babel-jest": "^29.4.1",
     "@microsoft/api-extractor": "^7.33.7",
     "@react-navigation/native": "^6.0.8",
     "@testing-library/react-hooks": "^8.0.0",
