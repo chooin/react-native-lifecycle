@@ -183,3 +183,46 @@ const handleClickOrUseShow = async() => {
    }
 }
 ```
+
+##### debounce
+
+```js
+import { debounce } from 'react-native-tools-next';
+/**
+ * 防抖是指在一定时间内，如果事件再次被触发，
+ * 就取消之前的操作并重新开始计时。
+ * 通常用于处理用户快速点击按钮等场景。
+ */
+const handleClick = debounce(() => console.log(1), 1000);
+
+// 立刻触发
+handleClick(); // 1
+handleClick(); // undefined
+handleClick(); // undefined
+handleClick(); // undefined
+handleClick(); // undefined
+// 暂停一秒后
+handleClick(); // 1
+handleClick(); // undefined
+handleClick(); // undefined
+```
+
+##### throttle
+
+```js
+import { throttle } from 'react-native-tools-next';
+/**
+ * 截流是指在一段时间内只执行一次函数，
+ * 通常用于处理窗口滚动、鼠标移动等频繁触发的事件。
+ */
+const listenForScrolling = throttle(() => new Date().getSeconds(), 2000);
+
+// 立刻触发
+listenForScrolling(); // 1
+listenForScrolling(); // undefined
+listenForScrolling(); // undefined
+listenForScrolling(); // 4
+listenForScrolling(); // undefined
+listenForScrolling(); // undefined
+listenForScrolling(); // 7
+```

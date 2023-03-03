@@ -187,3 +187,48 @@ const handleClickOrUseShow = async() => {
    }
 }
 ```
+
+##### debounce
+
+```js
+import { debounce } from 'react-native-tools-next';
+/**
+ * Debouncing refers to canceling the previous operation and restarting the timer
+ * if an event is triggered again within a certain time period.
+ * It is usually used to handle rapid button clicks,
+ * and other scenarios.
+ */
+const handleClick = debounce(() => console.log(1), 1000);
+
+// immediately
+handleClick(); // 1
+handleClick(); // undefined
+handleClick(); // undefined
+handleClick(); // undefined
+handleClick(); // undefined
+//  Pause for one second later
+handleClick(); // 1
+handleClick(); // undefined
+handleClick(); // undefined
+```
+
+##### throttle
+
+```js
+import { throttle } from 'react-native-tools-next';
+/**
+ * Throttling refers to executing a function only once within a certain period of time,
+ * usually used to handle events that are frequently triggered,
+ * such as window scrolling, mouse movement, and so on.
+ */
+const listenForScrolling = throttle(() => new Date().getSeconds(), 2000);
+
+// immediately
+listenForScrolling(); // 1
+listenForScrolling(); // undefined
+listenForScrolling(); // undefined
+listenForScrolling(); // 4
+listenForScrolling(); // undefined
+listenForScrolling(); // undefined
+listenForScrolling(); // 7
+```
