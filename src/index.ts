@@ -10,6 +10,8 @@ import { usePermissions, requestPermissions } from './usePermissions';
 
 // util
 import * as msg from './util/msg';
+import throttle from './util/throttle';
+import debounce from './util/debounce';
 
 export {
   useMount,
@@ -25,4 +27,6 @@ export {
   // util
   msg,
   requestPermissions,
+  debounce,
+  throttle,
 };
