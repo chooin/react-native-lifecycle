@@ -24,7 +24,7 @@ yarn add react-native-permissions mitt dayjs
 
 | package name            | version | react-native version |
 | ----------------------- | ------- | -------------------- |
-| react-native-tools-next | 2.1.5+  | 0.65.0+              |
+| react-native-tools-next | 2.1.6+  | 0.65.0+              |
 
 ### Usage
 
