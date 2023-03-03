@@ -17,7 +17,7 @@ yarn add react-native-tools-next
 
 ```sh
 yarn add @react-navigation/native # >= 6.0.0
-yarn add react-native-permissions
+yarn add react-native-permissions mitt dayjs
 ```
 
 ### 支持
