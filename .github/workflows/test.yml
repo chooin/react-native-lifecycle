@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
       - name: Checkout
@@ -25,5 +25,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - run: yarn add @react-navigation/native react-native react @types/react @types/react-native
-      - run: yarn test
+      - name: Install dependencies
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.0.2
+
+      - run: pnpm --filter react-native-lifecycle add @react-navigation/native @types/react @types/react-native
+      - run: pnpm test
