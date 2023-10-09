@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { AppState, AppStateStatus, Platform } from 'react-native';
 
 /**
- * Called when the application from foreground to background
+ * Called when the application switches from the foreground to background
  * @public
  */
 export function useAppInactive(fn: () => void): void {

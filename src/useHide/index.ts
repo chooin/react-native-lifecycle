@@ -8,7 +8,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 
 /**
- * Called when the page is hidden or in the application from foreground to background
+ * Called when the page is hidden, or when the application switches from the foreground to the background.
  * @public
  */
 export function useHide(fn: () => void): void {

@@ -8,7 +8,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 
 /**
- * Called when the page is displayed or in the application from background to foreground
+ * Called when the page is displayed, or when the application switches from the background to the foreground
  * @public
  */
 export function useShow(fn: () => void): void {

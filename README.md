@@ -36,10 +36,10 @@ yarn add @react-navigation/native # >= 5.7.0 or >= 6.0.0
 import { useAppActive, useAppInactive } from 'react-native-lifecycle';
 
 export default function App() {
-  // Called when the application from background to foreground
+  // Called when the application switches from the background to the foreground
   useAppActive(() => {});
 
-  // Called when the application from foreground to background
+  // Called when the application switches from the foreground to background
   useAppInactive(() => {});
 }
 ```
@@ -59,10 +59,10 @@ export default function Page() {
   // Called when the component is mounted
   useMount(() => {});
 
-  // Called when the page is displayed or in the application from background to foreground
+  // Called when the page is displayed, or when the application switches from the background to the foreground
   useShow(() => {});
 
-  // Called when the page is hidden or in the application from foreground to background
+  // Called when the page is hidden, or when the application switches from the foreground to the background
   useHide(() => {});
 
   // Called when the component is unmounted
