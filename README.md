@@ -56,7 +56,7 @@ import {
 } from 'react-native-lifecycle';
 
 export default function Page() {
-  // Called when the component is mounted
+  // Called when the page or component is mounted
   useMount(() => {});
 
   // Called when the page is displayed, or when the application switches from the background to the foreground
@@ -65,7 +65,7 @@ export default function Page() {
   // Called when the page is hidden, or when the application switches from the foreground to the background
   useHide(() => {});
 
-  // Called when the component is unmounted
+  // Called when the page or component is unmounted
   useUnmount(() => {});
 
   // Called after the page window resize

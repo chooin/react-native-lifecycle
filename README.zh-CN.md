@@ -56,7 +56,7 @@ import {
 } from 'react-native-lifecycle';
 
 export default function Page() {
-  // 组件创建时执行
+  // 页面或组件创建时执行
   useMount(() => {});
 
   // 页面出现在前台时执行
@@ -65,7 +65,7 @@ export default function Page() {
   // 页面从前台变为后台时执行
   useHide(() => {});
 
-  // 组件销毁时执行
+  // 页面或组件销毁时执行
   useUnmount(() => {});
 
   // 页面尺寸变化时执行
