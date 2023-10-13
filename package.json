@@ -3,6 +3,7 @@
   "version": "2.1.2",
   "description": "React Native Lifecycle",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:chooin/react-native-lifecycle.git",
   "author": "Devin.Zhu",
   "license": "MIT",
@@ -30,7 +31,6 @@
     "zx": "^6.0.7"
   },
   "scripts": {
-    "preinstall": "npx only-allow yarn",
     "prepare": "husky install",
     "test": "scripts/test.mjs",
     "build": "scripts/build.mjs"
