@@ -10,21 +10,29 @@
 
 type NavigationEvent = 'focus' | 'blur';
 
+interface Registration {
+  listener: () => void;
+}
+
 function createEmitter() {
-  let listeners: Array<() => void> = [];
+  // 与 react-native.ts 的 createEmitter 同一套语义:每次注册产生独立的
+  // registration,返回的取消订阅函数只摘自己那一个,而不是按引用相等过滤 ——
+  // 否则同一个函数引用重复注册时,一次取消订阅会把两个都误删。
+  let registrations: Array<Registration> = [];
 
   return {
     add(listener: () => void): () => void {
-      listeners.push(listener);
+      const registration: Registration = { listener };
+      registrations.push(registration);
       return () => {
-        listeners = listeners.filter(l => l !== listener);
+        registrations = registrations.filter(r => r !== registration);
       };
     },
     emit() {
-      [...listeners].forEach(listener => listener());
+      [...registrations].forEach(registration => registration.listener());
     },
     clear() {
-      listeners = [];
+      registrations = [];
     },
   };
 }

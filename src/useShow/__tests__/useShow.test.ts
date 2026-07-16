@@ -36,6 +36,23 @@ describe('useShow', () => {
 
     // 若去重逻辑被破坏,这里会是 3。
     expect(fn).toHaveBeenCalledTimes(2);
+
+    // 标志位被 resume 消费后必须复位:此后一次普通的离开→回来要照常触发。
+    // 若删掉 useShow/index.ts:51 的复位,这里会停在 2。
+    __emitBlur();
+    __emitFocus();
+    expect(fn).toHaveBeenCalledTimes(3);
+  });
+
+  it('未经后台的 AppState active 不触发 —— 该次进入只算 focus 一次', () => {
+    __setPlatform('ios');
+    const fn = vi.fn();
+    renderHook(() => useShow(fn));
+
+    __emitFocus(); // fn 第 1 次
+    __emitAppState('active'); // 没先进入后台,不是 resume,不该再触发
+
+    expect(fn).toHaveBeenCalledTimes(1); // 删掉 index.ts:20 的 gate 会是 2
   });
 
   it('blur 后摘除 AppState 监听器', () => {

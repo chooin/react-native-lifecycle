@@ -40,26 +40,35 @@ interface PlatformSelectSpec<T> {
   default?: T;
 }
 
+interface Registration<T> {
+  listener: (value: T) => void;
+}
+
 function createEmitter<T>() {
-  let listeners: Array<(value: T) => void> = [];
+  // 每次注册产生一个独立的 registration,remove() 只摘自己那一个 —— 真 RN 的
+  // EventEmitter 就是这个语义。若改用引用相等过滤,同一个函数引用注册两次时
+  // 一次 remove() 会把两个都误删,替身就比真 RN 更宽容,恰好会掩盖 useShow
+  // 重复挂载监听器的真 bug。
+  let registrations: Array<Registration<T>> = [];
 
   return {
     add(listener: (value: T) => void): NativeEventSubscription {
-      listeners.push(listener);
+      const registration: Registration<T> = { listener };
+      registrations.push(registration);
       return {
         remove() {
-          listeners = listeners.filter(l => l !== listener);
+          registrations = registrations.filter(r => r !== registration);
         },
       };
     },
     emit(value: T) {
-      [...listeners].forEach(listener => listener(value));
+      [...registrations].forEach(registration => registration.listener(value));
     },
     count() {
-      return listeners.length;
+      return registrations.length;
     },
     clear() {
-      listeners = [];
+      registrations = [];
     },
   };
 }
