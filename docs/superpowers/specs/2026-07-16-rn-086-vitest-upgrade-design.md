@@ -131,19 +131,20 @@ Node 24 是当前 Active LTS,EOL 2028-04-30,runway 最长。(Node 22 维护期�
 
 ### 文件
 
-| 动作 | 文件                                                 | 说明                                                                                                                                      |
-| ---- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| 删除 | `jest.config.js`                                     | 由 `vitest.config.ts` 取代                                                                                                                |
-| 删除 | `babel.config.js`                                    | 已无人读取(不再有 babel-jest;消费者的 Metro 用消费者自己的 babel 配置)                                                                    |
-| 新增 | `vitest.config.ts`                                   | ① alias `react-native`/`@react-navigation/native` → mock;② `environment: 'jsdom'`(`@testing-library/react` 经 react-dom 渲染,无 DOM 必挂) |
-| 新增 | `test/mocks/react-native.ts`                         | 受控 AppState/Dimensions/Platform                                                                                                         |
-| 新增 | `test/mocks/react-navigation.ts`                     | 受控 useNavigation                                                                                                                        |
-| 改   | `src/useShow/index.ts:16`、`src/useHide/index.ts:16` | `useRef<NativeEventSubscription>()` → `useRef<NativeEventSubscription \| undefined>(undefined)`                                           |
-| 改   | 3 个现有测试文件                                     | 各改一行 import                                                                                                                           |
-| 新增 | 4 个测试文件                                         | useAppInactive / useResize / useShow / useHide                                                                                            |
-| 改   | `scripts/test.mjs`                                   | `jest` → `vitest run`                                                                                                                     |
-| 改   | `.nvmrc`                                             | `20` → `24`                                                                                                                               |
-| 改   | `.github/workflows/test.yml`                         | 见下                                                                                                                                      |
+| 动作 | 文件                                                 | 说明                                                                                                                                                                          |
+| ---- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 删除 | `jest.config.js`                                     | 由 `vitest.config.ts` 取代                                                                                                                                                    |
+| 删除 | `babel.config.js`                                    | 已无人读取(不再有 babel-jest;消费者的 Metro 用消费者自己的 babel 配置)                                                                                                        |
+| 新增 | `vitest.config.ts`                                   | ① alias `react-native`/`@react-navigation/native` → mock;② `environment: 'jsdom'`(`@testing-library/react` 经 react-dom 渲染,无 DOM 必挂);③ `setupFiles: ['./test/setup.ts']` |
+| 新增 | `test/setup.ts`                                      | 全局 `afterEach`:先 `cleanup()` 再 `__reset()` 替身。RTL 的自动 cleanup 依赖全局 `afterEach`,vitest 默认 `globals: false` 下不生效,必须显式接管                               |
+| 新增 | `test/mocks/react-native.ts`                         | 受控 AppState/Dimensions/Platform                                                                                                                                             |
+| 新增 | `test/mocks/react-navigation.ts`                     | 受控 useNavigation                                                                                                                                                            |
+| 改   | `src/useShow/index.ts:16`、`src/useHide/index.ts:16` | `useRef<NativeEventSubscription>()` → `useRef<NativeEventSubscription \| undefined>(undefined)`                                                                               |
+| 改   | 3 个现有测试文件                                     | 各改一行 import                                                                                                                                                               |
+| 新增 | 4 个测试文件                                         | useAppInactive / useResize / useShow / useHide                                                                                                                                |
+| 改   | `scripts/test.mjs`                                   | `jest` → `vitest run`                                                                                                                                                         |
+| 改   | `.nvmrc`                                             | `20` → `24`                                                                                                                                                                   |
+| 改   | `.github/workflows/test.yml`                         | 见下                                                                                                                                                                          |
 
 ### `tsconfig.json` 不动
 
@@ -188,7 +189,18 @@ Node 24 是当前 Active LTS,EOL 2028-04-30,runway 最长。(Node 22 维护期�
 
 ## 测试设计
 
-每个测试前 `__reset()` 两个 mock,避免跨用例状态泄漏。
+### 跨用例隔离由 `test/setup.ts` 统一负责
+
+**`@testing-library/react` 的自动 cleanup 在此失效,必须显式接管。** RTL 是靠探测全局 `afterEach` 来自动注册组件卸载的;而 vitest 默认 `globals: false`,没有全局 `afterEach`,自动 cleanup 静默不生效 —— 组件会跨用例残留、监听器持续累积,`__listenerCount()` 类断言随即失去意义。
+
+因此新增 `test/setup.ts`(挂在 `vitest.config.ts` 的 `setupFiles`),用一个全局 `afterEach` 同时做两件事,顺序不可颠倒:
+
+1. `cleanup()` —— 卸载组件,让 hook 自己的 cleanup 跑完、自行摘除监听器
+2. `__reset()` 两个 mock —— 清空残留并把 `Platform.OS` 复位为 `ios`
+
+**顺序即语义**:先卸载再清空,监听器是被 hook 主动摘掉的;反过来先清空,则任何"忘记 remove"的真 bug 都会被 `__reset()` 掩盖成绿色。
+
+这样各测试文件无需 `beforeEach` 样板,平台设置也不会跨用例泄漏。
 
 | Hook             | 要验证的行为                                                                                                |
 | ---------------- | ----------------------------------------------------------------------------------------------------------- |
