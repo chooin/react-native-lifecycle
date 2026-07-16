@@ -1,19 +1,17 @@
+import { renderHook } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 import { useMount } from '../index';
-import { renderHook } from '@testing-library/react-hooks';
 
 describe('useMount', () => {
-  it('should be defined', () => {
-    expect(useMount).toBeDefined();
-  });
   it('test useMount', async () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     const hook = renderHook(() => useMount(fn));
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
     hook.rerender();
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
     hook.unmount();
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
     renderHook(() => useMount(fn)).unmount();
-    expect(fn).toBeCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 });
