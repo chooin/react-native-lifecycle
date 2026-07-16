@@ -568,10 +568,6 @@ import { describe, expect, it, vi } from 'vitest';
 import { useMount } from '../index';
 
 describe('useMount', () => {
-  it('should be defined', () => {
-    expect(useMount).toBeDefined();
-  });
-
   it('test useMount', async () => {
     const fn = vi.fn();
     const hook = renderHook(() => useMount(fn));
@@ -598,10 +594,6 @@ import { describe, expect, it, vi } from 'vitest';
 import { useUnmount } from '../index';
 
 describe('useUnmount', () => {
-  it('should be defined', () => {
-    expect(useUnmount).toBeDefined();
-  });
-
   it('test useUnmount', async () => {
     const fn = vi.fn();
     const hook = renderHook(() => useUnmount(fn));
@@ -620,7 +612,7 @@ describe('useUnmount', () => {
 fnm exec --using=24 -- npx vitest run src/useMount src/useUnmount
 ```
 
-Expected: `Test Files 2 passed (2)` / `Tests 4 passed (4)`
+Expected: `Test Files 2 passed (2)` / `Tests 2 passed (2)`
 
 **关键:必须看到测试计数 > 0。** 本仓库原有的失败模式正是"启动失败、零测试执行" —— 没有红色输出不等于通过。
 
@@ -660,10 +652,6 @@ import {
 import { useAppActive } from '../index';
 
 describe('useAppActive', () => {
-  it('should be defined', () => {
-    expect(useAppActive).toBeDefined();
-  });
-
   it('回到前台时调用 fn', () => {
     const fn = vi.fn();
     renderHook(() => useAppActive(fn));
@@ -705,7 +693,7 @@ describe('useAppActive', () => {
 fnm exec --using=24 -- npx vitest run src/useAppActive
 ```
 
-Expected: `Tests 4 passed (4)`
+Expected: `Tests 3 passed (3)`
 
 若报 Flow 语法错误或 `Cannot find module 'react-native'`,说明 alias 未生效 —— 回到 `vitest.config.ts` 检查 `alias` 是否在 `test` 块内。
 
@@ -743,10 +731,6 @@ import {
 import { useAppInactive } from '../index';
 
 describe('useAppInactive', () => {
-  it('should be defined', () => {
-    expect(useAppInactive).toBeDefined();
-  });
-
   it('ios 上 inactive 触发、background 不触发', () => {
     __setPlatform('ios');
     const fn = vi.fn();
@@ -781,7 +765,7 @@ describe('useAppInactive', () => {
 fnm exec --using=24 -- npx vitest run src/useAppInactive
 ```
 
-Expected: `Tests 3 passed (3)`
+Expected: `Tests 2 passed (2)`
 
 - [ ] **Step 3: 提交**
 
@@ -815,10 +799,6 @@ import {
 import { useResize } from '../index';
 
 describe('useResize', () => {
-  it('should be defined', () => {
-    expect(useResize).toBeDefined();
-  });
-
   it('尺寸变化时调用 fn', () => {
     const fn = vi.fn();
     renderHook(() => useResize(fn));
@@ -848,7 +828,7 @@ describe('useResize', () => {
 fnm exec --using=24 -- npx vitest run src/useResize
 ```
 
-Expected: `Tests 3 passed (3)`
+Expected: `Tests 2 passed (2)`
 
 - [ ] **Step 3: 提交**
 
@@ -999,10 +979,6 @@ import { __emitBlur, __emitFocus } from '../../../test/mocks/react-navigation';
 import { useHide } from '../index';
 
 describe('useHide', () => {
-  it('should be defined', () => {
-    expect(useHide).toBeDefined();
-  });
-
   it('页面 blur 时调用 fn', () => {
     const fn = vi.fn();
     renderHook(() => useHide(fn));
@@ -1055,7 +1031,7 @@ describe('useHide', () => {
 fnm exec --using=24 -- npx vitest run src/useHide
 ```
 
-Expected: `Tests 5 passed (5)`
+Expected: `Tests 4 passed (4)`
 
 - [ ] **Step 6: 提交**
 
@@ -1093,10 +1069,6 @@ import { __emitBlur, __emitFocus } from '../../../test/mocks/react-navigation';
 import { useShow } from '../index';
 
 describe('useShow', () => {
-  it('should be defined', () => {
-    expect(useShow).toBeDefined();
-  });
-
   it('页面 focus 时调用 fn', () => {
     const fn = vi.fn();
     renderHook(() => useShow(fn));
@@ -1146,7 +1118,7 @@ describe('useShow', () => {
 fnm exec --using=24 -- npx vitest run src/useShow
 ```
 
-Expected: `Tests 4 passed (4)`
+Expected: `Tests 3 passed (3)`
 
 若"从后台返回"一例得到 3 次,说明 `isAppStateChangeRef` 的去重已失效 —— 停下报告,不要改测试去迁就实现。
 
@@ -1214,7 +1186,7 @@ jobs:
 fnm exec --using=24 -- yarn test
 ```
 
-Expected: `tsc --noEmit` 无输出,随后 `Test Files 7 passed (7)` / `Tests 23 passed (23)`。
+Expected: `tsc --noEmit` 无输出,随后 `Test Files 7 passed (7)` / `Tests 16 passed (16)`。
 
 **验收要点:测试文件数必须是 7** —— 7 个 hook 各一个。若少于 7,说明有文件未被 vitest 收集。
 

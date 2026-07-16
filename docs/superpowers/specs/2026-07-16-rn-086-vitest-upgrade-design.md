@@ -204,8 +204,8 @@ Node 24 是当前 Active LTS,EOL 2028-04-30,runway 最长。(Node 22 维护期�
 
 | Hook             | 要验证的行为                                                                                                |
 | ---------------- | ----------------------------------------------------------------------------------------------------------- |
-| `useMount`       | 挂载调用一次;rerender 不再调用;unmount 不调用(**现有测试,仅改 import**)                                     |
-| `useUnmount`     | 挂载/rerender 不调用;unmount 调用一次(**现有测试,仅改 import**)                                             |
+| `useMount`       | 挂载调用一次;rerender 不再调用;unmount 不调用(**现有测试,改 import 并删去无效断言**)                        |
+| `useUnmount`     | 挂载/rerender 不调用;unmount 调用一次(**现有测试,改 import 并删去无效断言**)                                |
 | `useAppActive`   | emit `'active'` → 调用;emit `'background'` → 不调用;unmount 后监听器数归零                                  |
 | `useAppInactive` | **ios**:`'inactive'` → 调用,`'background'` → 不调用;**android**:`'background'` → 调用,`'inactive'` → 不调用 |
 | `useResize`      | emit 尺寸变化 → 调用;unmount 后监听器数归零                                                                 |
@@ -229,6 +229,12 @@ __emitFocus()              → 必须【不】触发
 ```
 
 若去重逻辑被破坏,此处会得到 3 次。
+
+### 关于 `it('should be defined')`
+
+原有 3 个测试文件各带一条 `expect(useX).toBeDefined()`。**7 个文件一律不保留。**
+
+它被同文件的真实测试严格覆盖:hook 若不存在,import 阶段就会失败,根本轮不到该断言执行。这属于"断言不了任何东西"的测试,新文件不再沿用此约定,既有文件一并去除。
 
 ## 验证标准
 
