@@ -52,4 +52,33 @@ describe('useHide', () => {
 
     expect(__appStateListenerCount()).toBe(0);
   });
+
+  it('卸载后摘除 AppState 监听器 —— focus 状态下直接卸载时 blur 不会到来', () => {
+    __setPlatform('ios');
+    const fn = vi.fn();
+    const hook = renderHook(() => useHide(fn));
+
+    __emitFocus();
+    expect(__appStateListenerCount()).toBe(1);
+
+    hook.unmount();
+
+    expect(__appStateListenerCount()).toBe(0);
+    __emitAppState('inactive');
+    expect(fn).not.toHaveBeenCalled(); // 已卸载,不应再被触发
+  });
+
+  it('连续 focus 不重复挂载监听器', () => {
+    __setPlatform('ios');
+    const fn = vi.fn();
+    renderHook(() => useHide(fn));
+
+    __emitFocus();
+    __emitFocus();
+
+    expect(__appStateListenerCount()).toBe(1);
+
+    __emitAppState('inactive');
+    expect(fn).toHaveBeenCalledTimes(1); // 重复挂载时会是 2
+  });
 });

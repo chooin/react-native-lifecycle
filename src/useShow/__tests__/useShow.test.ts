@@ -66,4 +66,38 @@ describe('useShow', () => {
 
     expect(__appStateListenerCount()).toBe(0);
   });
+
+  it('卸载后摘除 AppState 监听器 —— focus 状态下直接卸载时 blur 不会到来', () => {
+    __setPlatform('ios');
+    const fn = vi.fn();
+    const hook = renderHook(() => useShow(fn));
+
+    __emitFocus(); // fn 第 1 次
+    expect(__appStateListenerCount()).toBe(1);
+
+    hook.unmount();
+
+    expect(__appStateListenerCount()).toBe(0);
+    __emitAppState('inactive');
+    __emitAppState('active');
+    expect(fn).toHaveBeenCalledTimes(1); // 已卸载,不应再被触发
+  });
+
+  it('连续 focus 不重复挂载监听器 —— 多轮后台返回不累积触发', () => {
+    __setPlatform('ios');
+    const fn = vi.fn();
+    renderHook(() => useShow(fn));
+
+    __emitFocus(); // fn 第 1 次
+    __emitAppState('inactive');
+    __emitAppState('active'); // fn 第 2 次
+    __emitFocus(); // resume 后的 focus,被去重跳过
+
+    expect(__appStateListenerCount()).toBe(1);
+
+    __emitAppState('inactive');
+    __emitAppState('active'); // fn 第 3 次
+
+    expect(fn).toHaveBeenCalledTimes(3); // 重复挂载时会是 4
+  });
 });
