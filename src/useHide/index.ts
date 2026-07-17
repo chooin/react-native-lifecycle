@@ -28,17 +28,27 @@ export function useHide(fn: () => void): void {
   };
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      // focus 可能连续到达而中间没有 blur(例如条件渲染的 navigator),
-      // 不先摘掉上一次的订阅就会重复挂载 —— 监听器无界增长,fn 按轮次累积触发。
+    const attach = () => {
+      // focus 可能连续到达而中间没有 blur —— 最常见的就是从后台返回:
+      // 切到后台不会让屏幕 blur,恢复时却会再发一次 focus。不先摘掉上一次的
+      // 订阅就会重复挂载,监听器无界增长、fn 按轮次累积触发。
       AppStateRef.current?.remove?.();
       AppStateRef.current = AppState.addEventListener('change', onChange);
-    });
+    };
+
+    // 屏幕在 effect 运行时可能已经是 focused(StrictMode 重跑 effect、navigation
+    // 身份变化),此时不会再有 focus 事件到来 —— 必须主动挂一次,否则这个 hook
+    // 永远收不到 AppState 事件。react-navigation 自己的 useFocusEffect 同此。
+    if (navigation.isFocused()) {
+      attach();
+    }
+
+    const unsubscribe = navigation.addListener('focus', attach);
 
     return () => {
       unsubscribe();
-      // 常规路径由 blur 摘除;但屏幕在 focus 状态下直接卸载时 blur 不会到来,
-      // 此处兜底,否则已卸载组件的 fn 仍会被 AppState 事件触发。
+      // 常规路径由 blur 摘除;但屏幕在 focus 状态下直接卸载时 blur 不会到来
+      //(例如条件渲染的 navigator),此处兜底,否则已卸载组件的 fn 仍会被触发。
       AppStateRef.current?.remove?.();
       AppStateRef.current = undefined;
     };

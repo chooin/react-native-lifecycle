@@ -42,11 +42,16 @@ const emitters: Record<NavigationEvent, ReturnType<typeof createEmitter>> = {
   blur: createEmitter(),
 };
 
+let focused = false;
+
 // 必须是模块级单例:useShow / useHide 的 effect 依赖数组是 [navigation],
 // 若每次渲染返回新对象,effect 会不断重订阅。
 const navigation = {
   addListener(event: NavigationEvent, listener: () => void): () => void {
     return emitters[event].add(listener);
+  },
+  isFocused(): boolean {
+    return focused;
   },
 };
 
@@ -57,14 +62,23 @@ export function useNavigation() {
 // —— 非真实 API,仅供测试驱动 ——
 
 export function __emitFocus(): void {
+  focused = true;
   emitters.focus.emit();
 }
 
 export function __emitBlur(): void {
+  focused = false;
   emitters.blur.emit();
+}
+
+// 只改 focus 状态而不派发事件 —— 用于模拟「组件挂载时屏幕已经是 focused」,
+// 这种情况下不会有 focus 事件到来。
+export function __setFocused(value: boolean): void {
+  focused = value;
 }
 
 export function __reset(): void {
   emitters.focus.clear();
   emitters.blur.clear();
+  focused = false;
 }

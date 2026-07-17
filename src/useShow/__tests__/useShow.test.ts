@@ -5,7 +5,11 @@ import {
   __emitAppState,
   __setPlatform,
 } from '../../../test/mocks/react-native';
-import { __emitBlur, __emitFocus } from '../../../test/mocks/react-navigation';
+import {
+  __emitBlur,
+  __emitFocus,
+  __setFocused,
+} from '../../../test/mocks/react-navigation';
 import { useShow } from '../index';
 
 describe('useShow', () => {
@@ -99,5 +103,19 @@ describe('useShow', () => {
     __emitAppState('active'); // fn 第 3 次
 
     expect(fn).toHaveBeenCalledTimes(3); // 重复挂载时会是 4
+  });
+
+  it('挂载时屏幕已处于 focus —— 不等 focus 事件就挂载监听器', () => {
+    __setFocused(true);
+    const fn = vi.fn();
+    renderHook(() => useShow(fn));
+
+    // 已经 focused 时不会再有 focus 事件到来,若只在事件里挂载就永远收不到 AppState
+    expect(__appStateListenerCount()).toBe(1);
+
+    __setPlatform('ios');
+    __emitAppState('inactive');
+    __emitAppState('active');
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 });
