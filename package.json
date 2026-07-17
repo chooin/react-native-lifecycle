@@ -1,6 +1,6 @@
 {
   "name": "react-native-lifecycle",
-  "version": "2.1.2",
+  "version": "3.0.0",
   "description": "React Native Lifecycle",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,8 @@
   "license": "MIT",
   "peerDependencies": {
     "@react-navigation/native": ">= 5.7.0",
-    "react-native": ">= 0.65.0"
+    "react": ">= 18.0.0",
+    "react-native": ">= 0.71.0"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.58.10",
