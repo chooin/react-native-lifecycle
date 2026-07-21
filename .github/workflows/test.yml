@@ -9,24 +9,54 @@ on:
     - cron: '0 2 * * *'
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [20.x, 22.x]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: pnpm
 
-      - run: pnpm add -D @react-navigation/native@latest react-native@latest react@latest react-test-renderer@latest @react-native/babel-preset@latest @react-native/jest-preset@latest @types/react@latest @types/react-native@latest
-      - run: pnpm test
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+  # Nightly canary: verify the library still works against the latest peer versions
+  test-latest:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: Install latest peers
+        run: pnpm add -D @react-navigation/native@latest react-native@latest react@latest react-test-renderer@latest @react-native/babel-preset@latest @react-native/jest-preset@latest @types/react@latest
+
+      - name: Test
+        run: pnpm test

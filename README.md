@@ -16,15 +16,16 @@ pnpm add react-native-lifecycle
 ### Peer Dependencies
 
 ```sh
-pnpm add @react-navigation/native # >= 5.7.0 or >= 6.0.0
+pnpm add @react-navigation/native # >= 6.0.0, optional: only required by useShow / useHide
 ```
 
 ### Support
 
-| package name           | version | react-native version |
-| ---------------------- | ------- | -------------------- |
-| react-native-lifecycle | 2.0.0+  | 0.65.0+              |
-| react-native-lifecycle | 1.2.4+  | 0.59.0+              |
+| package name           | version | react version | react-native version |
+| ---------------------- | ------- | ------------- | -------------------- |
+| react-native-lifecycle | 3.0.0+  | 18.0.0+       | 0.73.0+              |
+| react-native-lifecycle | 2.0.0+  | -             | 0.65.0+              |
+| react-native-lifecycle | 1.2.4+  | -             | 0.59.0+              |
 
 ### Usage
 
@@ -36,10 +37,10 @@ pnpm add @react-navigation/native # >= 5.7.0 or >= 6.0.0
 import { useAppActive, useAppInactive } from 'react-native-lifecycle';
 
 export default function App() {
-  // Called when the application switches from the background to the foreground
+  // Called when the app returns to the foreground
   useAppActive(() => {});
 
-  // Called when the application switches from the foreground to background
+  // Called when the app leaves the foreground
   useAppInactive(() => {});
 }
 ```
@@ -56,19 +57,19 @@ import {
 } from 'react-native-lifecycle';
 
 export default function Page() {
-  // Called when the page or component is mounted
+  // Called once when the component is mounted
   useMount(() => {});
 
-  // Called when the page is displayed, or when the application switches from the background to the foreground
+  // Called when the screen gains focus, or when the app returns to the foreground while the screen is focused
   useShow(() => {});
 
-  // Called when the page is hidden, or when the application switches from the foreground to the background
+  // Called when the screen loses focus or unmounts, or when the app leaves the foreground while the screen is focused
   useHide(() => {});
 
-  // Called when the page or component is unmounted
+  // Called once when the component is unmounted
   useUnmount(() => {});
 
-  // Called after the page window resize
+  // Called when the window dimensions change
   useResize(() => {});
 }
 ```

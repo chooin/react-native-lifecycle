@@ -1,57 +1,39 @@
-import { useEffect, useRef } from 'react';
-import {
-  AppState,
-  AppStateStatus,
-  NativeEventSubscription,
-  Platform,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useCallback, useRef } from 'react';
+import { AppState, AppStateStatus, Platform } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
 /**
- * Called when the page is displayed, or when the application switches from the background to the foreground
- * @public
+ * Called when the screen gains focus, or when the app returns to the foreground while the screen is focused
  */
 export function useShow(fn: () => void): void {
-  const navigation = useNavigation();
-  const AppStateRef = useRef<NativeEventSubscription | undefined>(undefined);
-  const isAppStateChangeRef = useRef(false);
+  const fnRef = useRef(fn);
+  fnRef.current = fn;
 
-  const onChange = (state: AppStateStatus) => {
-    if (isAppStateChangeRef.current) {
-      if (state === 'active') {
-        fn();
-      }
-    }
-    if (
-      state ===
-      Platform.select({
-        ios: 'inactive',
-        android: 'background',
-      })
-    ) {
-      isAppStateChangeRef.current = true;
-    }
-  };
+  useFocusEffect(
+    useCallback(() => {
+      fnRef.current();
 
-  useEffect(() => {
-    return navigation.addListener('focus', () => {
-      AppStateRef.current = AppState.addEventListener('change', onChange);
-    });
-  }, [navigation]);
+      let hasLeftForeground = false;
+      const subscription = AppState.addEventListener(
+        'change',
+        (state: AppStateStatus) => {
+          if (hasLeftForeground && state === 'active') {
+            hasLeftForeground = false;
+            fnRef.current();
+          }
+          if (
+            state ===
+            Platform.select({
+              ios: 'inactive',
+              android: 'background',
+            })
+          ) {
+            hasLeftForeground = true;
+          }
+        },
+      );
 
-  useEffect(() => {
-    return navigation.addListener('blur', () => {
-      AppStateRef.current?.remove?.();
-    });
-  }, [navigation]);
-
-  useEffect(() => {
-    return navigation.addListener('focus', () => {
-      if (isAppStateChangeRef.current) {
-        isAppStateChangeRef.current = false;
-      } else {
-        fn();
-      }
-    });
-  }, [navigation]);
+      return () => subscription.remove();
+    }, []),
+  );
 }
