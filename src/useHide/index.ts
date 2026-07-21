@@ -1,45 +1,35 @@
-import { useEffect, useRef } from 'react';
-import {
-  AppState,
-  AppStateStatus,
-  NativeEventSubscription,
-  Platform,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useCallback, useRef } from 'react';
+import { AppState, AppStateStatus, Platform } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
 /**
- * Called when the page is hidden, or when the application switches from the foreground to the background.
- * @public
+ * Called when the screen loses focus or unmounts, or when the app leaves the foreground while the screen is focused
  */
 export function useHide(fn: () => void): void {
-  const navigation = useNavigation();
-  const AppStateRef = useRef<NativeEventSubscription>();
+  const fnRef = useRef(fn);
+  fnRef.current = fn;
 
-  const onChange = (state: AppStateStatus) => {
-    if (
-      state ===
-      Platform.select({
-        ios: 'inactive',
-        android: 'background',
-      })
-    ) {
-      fn();
-    }
-  };
+  useFocusEffect(
+    useCallback(() => {
+      const subscription = AppState.addEventListener(
+        'change',
+        (state: AppStateStatus) => {
+          if (
+            state ===
+            Platform.select({
+              ios: 'inactive',
+              android: 'background',
+            })
+          ) {
+            fnRef.current();
+          }
+        },
+      );
 
-  useEffect(() => {
-    return navigation.addListener('focus', () => {
-      AppStateRef.current = AppState.addEventListener('change', onChange);
-    });
-  }, [navigation]);
-
-  useEffect(() => {
-    return navigation.addListener('blur', () => {
-      AppStateRef.current?.remove?.();
-    });
-  }, [navigation]);
-
-  useEffect(() => {
-    return navigation.addListener('blur', fn);
-  }, [navigation]);
+      return () => {
+        subscription.remove();
+        fnRef.current();
+      };
+    }, []),
+  );
 }

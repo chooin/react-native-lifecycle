@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 
 /**
- * Called when the component is unmounted
- * @public
+ * Called once when the component is unmounted
  */
 export function useUnmount(fn: () => void): void {
   useEffect(() => {

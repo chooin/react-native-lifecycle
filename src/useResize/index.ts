@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { Dimensions } from 'react-native';
 
 /**
- * Called after the page window resize
- * @public
+ * Called when the window dimensions change
  */
 export function useResize(fn: () => void): void {
   const onChange = () => {

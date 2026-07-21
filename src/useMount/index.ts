@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 
 /**
- * Called when the component is mounted
- * @public
+ * Called once when the component is mounted
  */
 export function useMount(fn: () => void): void {
   useEffect(() => {
