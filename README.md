@@ -10,13 +10,13 @@
 ### Install
 
 ```sh
-yarn add react-native-lifecycle
+pnpm add react-native-lifecycle
 ```
 
 ### Peer Dependencies
 
 ```sh
-yarn add @react-navigation/native # >= 5.7.0 or >= 6.0.0
+pnpm add @react-navigation/native # >= 5.7.0 or >= 6.0.0
 ```
 
 ### Support

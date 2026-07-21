@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
  */
 export function useShow(fn: () => void): void {
   const navigation = useNavigation();
-  const AppStateRef = useRef<NativeEventSubscription>();
+  const AppStateRef = useRef<NativeEventSubscription | undefined>(undefined);
   const isAppStateChangeRef = useRef(false);
 
   const onChange = (state: AppStateStatus) => {

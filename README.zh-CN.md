@@ -10,13 +10,13 @@
 ### 如何安装
 
 ```sh
-yarn add react-native-lifecycle
+pnpm add react-native-lifecycle
 ```
 
 ### 第三方依赖
 
 ```sh
-yarn add @react-navigation/native # >= 5.7.0 或 >= 6.0.0
+pnpm add @react-navigation/native # >= 5.7.0 或 >= 6.0.0
 ```
 
 ### 支持

@@ -20,10 +20,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
-      - run: yarn add @react-navigation/native react-native react @types/react @types/react-native
-      - run: yarn test
+      - run: pnpm add -D @react-navigation/native@latest react-native@latest react@latest react-test-renderer@latest @react-native/babel-preset@latest @react-native/jest-preset@latest @types/react@latest @types/react-native@latest
+      - run: pnpm test
