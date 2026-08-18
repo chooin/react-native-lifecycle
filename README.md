@@ -1,3 +1,5 @@
+
+
 # React Native Lifecycle
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/chooin/react-native-lifecycle/blob/master/LICENSE)
@@ -63,7 +65,7 @@ export default function Page() {
   // Called when the screen gains focus, or when the app returns to the foreground while the screen is focused
   useShow(() => {});
 
-  // Called when the screen loses focus or unmounts, or when the app leaves the foreground while the screen is focused
+  // Called when the screen loses focus, or unmounts while focused, or when the app leaves the foreground while the screen is focused
   useHide(() => {});
 
   // Called once when the component is unmounted
